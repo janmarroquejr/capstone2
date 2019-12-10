@@ -19,16 +19,23 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/addmenuitems', 'MenuItemController@create');
-
-Route::get('/addmenuitems', 'MenuItemController@index');
 
 Route::get('/menu', 'MenuItemController@show');
 
-Route::get('/deleteitem/{menuItem}', 'MenuItemController@destroy');
 
 Route::middleware(['auth'])->group(function(){
+	
+	Route::get('/addmenuitems', 'MenuItemController@create');
+
+	Route::get('/addmenuitems', 'MenuItemController@index');
+	
 	Route::post('/addtomenu', 'MenuItemController@store');
+
+	Route::get('/deleteitem/{menuItem}', 'MenuItemController@destroy');
+
+	Route::post('/edit/{menuItem}/edit', 'MenuItemController@edit');
+
+	Route::patch('/update/{menuItem}', 'MenuItemController@update');
 });
 
 Route::get('/testpage', function(){

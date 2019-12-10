@@ -5,25 +5,29 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-3">
-			<h1>Add Menu Item</h1>
-			<form action="/addtomenu" method="POST" enctype="multipart/form-data">
+			<h1>Edit Menu Item</h1>
+			<form action="/update/{{$menuItem->id}}" method="POST" enctype="multipart/form-data">
 				@csrf
-
+				@method('PATCH')
 				<label for="name">Name</label>
-				<input type="text" name="name" class="form-control">
+				<input type="text" name="name" class="form-control" value="{{$menuItem->name}}">
 				<label for="price">Price</label>
-				<input type="text" name="price" class="form-control">
+				<input type="text" name="price" class="form-control" value="{{$menuItem->price}}">
 				<label for="description">Description</label>
-				<textarea type="text" name="description" class="form-control"></textarea>
+				<textarea type="text" name="description" class="form-control">{{$menuItem->description}}</textarea>
 				<label for="image">Image</label>
 				<input type="file" name="image" class="form-control">
 				<label for="categories">Category</label>
 				<select name="category" class="form-control">
 					@foreach($categories as $category)
+						@if($category->id === $menuItem->category_id)
+						<option selected value="{{$category->id}}">{{$category->name}}</option>
+						@else
 						<option value="{{$category->id}}">{{$category->name}}</option>
+						@endif
 					@endforeach
 				</select>
-				<button type="submit" class="btn btn-primary form-control">Submit</button>
+				<button type="submit" class="btn btn-primary form-control">Save Changes</button>
 
 			</form>
 		</div>
@@ -37,7 +41,7 @@
 					<th>Price</th>
 					<th>Description</th>
 					<th>Category</th>
-					<th>Action</th>
+					
 				</tr>
 				<tbody>
 					@forelse($items as $index => $item)
@@ -48,14 +52,7 @@
 						<td>{{$item->price}}</td>
 						<td>{{$item->description}}</td>
 						<td>{{$item->category->name}}</td>
-						<td>
-							<form action="/edit/{{$item->id}}/edit" method="POST">
-								@csrf
-								<button>Update</button>
-							</form>
-								
-							<a href="/deleteitem/{{$item->id}}" class="text-danger">Delete</a>
-						</td>
+					
 					</tr>
 					@empty
 					<tr>

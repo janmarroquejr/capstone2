@@ -69,9 +69,11 @@ class MenuItemController extends Controller
      * @param  \App\MenuItem  $menuItem
      * @return \Illuminate\Http\Response
      */
-    public function edit(MenuItem $menuItem)
+    public function edit(MenuItem $menuItem, Request $request)
     {
-        //
+        $items = MenuItem::all();
+        $categories = Category::all();
+        return view('menu.editMenuItems', compact('items', 'menuItem', 'categories'));
     }
 
     /**
@@ -83,7 +85,19 @@ class MenuItemController extends Controller
      */
     public function update(Request $request, MenuItem $menuItem)
     {
-        //
+        $image = $request->file('image');
+        if($image){
+            $image->move('images/', $image->getClientOriginalName());
+            $menuItem->image_path = "images/".$image->getClientOriginalName();
+        }
+
+        $menuItem->name = $request->name;
+        $menuItem->price = $request->price;
+        $menuItem->description = $request->description;
+        $menuItem->category_id = $request->category;
+        $menuItem->save();
+        return redirect('/addmenuitems');
+
     }
 
     /**
