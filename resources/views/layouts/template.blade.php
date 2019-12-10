@@ -26,12 +26,12 @@
 </head>
 <body>
 
-	<div class="d-flex" id="wrapper">
-
-		<!-- Sidebar -->
-		<div class="bg-light border-right" id="sidebar-wrapper">
-			<div class="sidebar-heading">Highsteaks</div>
-			<div class="list-group list-group-flush">
+<div class="d-flex container-fluid" id="wrapper">
+	<!-- Sidebar -->
+	<div class="bg-light border-right" id="sidebar-wrapper">
+		{{-- <div class="sidebar-heading">Highsteaks</div> --}}
+		<h1>Highsteaks</h1>
+		<div class="list-group list-group-flush">
 				<a class="list-group-item list-group-item-action bg-light" href="/menu">{{ __('Menu') }}</a>
 				@guest
 					<a class="list-group-item list-group-item-action bg-light" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -48,44 +48,37 @@
 
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="{{ route('logout') }}"
-					onclick="event.preventDefault();
-					document.getElementById('logout-form').submit();">
-					{{ __('Logout') }}
-				</a>
+						onclick="event.preventDefault();
+						document.getElementById('logout-form').submit();">
+						{{ __('Logout') }}
+					</a>
 
-				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-					@csrf
-				</form>
-			</div>
-			</div>
-			@endguest
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						@csrf
+					</form>
+				</div>
+				@endguest
 		</div>
-		<!-- /#sidebar-wrapper -->
-
-		<!-- Page Content -->
-		<div id="page-content-wrapper">
-			<button id="menu-toggle"><i class="fas fa-bars"></i></i></button>
-
-
-			<main class="py-4">
-				@yield('content')
-			</main>
-
-		</div>
-		<!-- /#page-content-wrapper -->
-
 	</div>
 
-
+	<div id="page-content-wrapper">
+		<button id="menu-toggle"><i class="fas fa-bars"></i></i></button>
+		<main class="py-4">
+			@yield('content')
+		</main>
+	</div>	
+	
+	
+			
 </div>
-{{-- <script
-src="https://code.jquery.com/jquery-3.4.1.min.js"
-integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-crossorigin="anonymous"></script> --}}
+
+		
+		
+		
 
 <script type="text/javascript">
 	let menuToggle = document.getElementById('menu-toggle');
-	let wrapper = document.querySelector('#wrapper');
+	let wrapper = document.getElementById('wrapper');
 	
 	menuToggle.addEventListener('click', function(e) {
 		wrapper.classList.toggle("toggled");

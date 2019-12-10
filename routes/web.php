@@ -38,8 +38,6 @@ Route::middleware(['auth'])->group(function(){
 	Route::patch('/update/{menuItem}', 'MenuItemController@update');
 });
 
-Route::get('/testpage', function(){
-	return view('test');
-});
+
 
 
