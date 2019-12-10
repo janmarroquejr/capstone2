@@ -15,7 +15,9 @@ class MenuItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = MenuItem::all();
+        $categories = Category::all();
+        return view('menu.addMenuItems', compact('items', 'categories'));
     }
 
     /**
@@ -46,7 +48,7 @@ class MenuItemController extends Controller
         $item->image_path = "images/".$image->getClientOriginalName();
         $item->category_id = $request->category;
         $item->save();
-        return redirect('/menu');
+        return redirect('/addmenuitems');
     }
 
     /**
@@ -92,6 +94,7 @@ class MenuItemController extends Controller
      */
     public function destroy(MenuItem $menuItem)
     {
-        //
+        $menuItem->delete();
+        return redirect('/addmenuitems');
     }
 }
