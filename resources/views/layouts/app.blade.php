@@ -38,12 +38,11 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        @if(Auth::user()->role === 'admin')
-                        <li class="nav-item">
-                            <a class="nav-link" href="/addmenuitems">{{ __('Add menu items') }}</a>
-                        </li>
-                        @endif
                         <!-- Authentication Links -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/menu">{{ __('Menu') }}</a>
+                        </li>
+
                         @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -54,6 +53,11 @@
                         </li>
                         @endif
                         @else
+                        @if(Auth::user()->role == 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="/addmenuitems">{{ __('Add Menu Items') }}</a>
+                        </li>
+                        @endif
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>

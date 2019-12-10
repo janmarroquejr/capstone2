@@ -21,10 +21,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/addmenuitems', 'MenuItemController@create');
 
-Route::post('/addtomenu', 'MenuItemController@store');
-
 Route::get('/menu', 'MenuItemController@show');
 
 Route::middleware(['auth'])->group(function(){
-	//put routes here
+	Route::post('/addtomenu', 'MenuItemController@store');
 });
+
+Route::get('/testpage', function(){
+	return view('test');
+});
+
+
