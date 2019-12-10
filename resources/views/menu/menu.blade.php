@@ -23,7 +23,7 @@
 				</div>
 				<p class="info">{{$item->description}}</p>
 			</div>
-			<a href="#" class="btn">Add to reservation</a>
+			<button href="#" class="btn">Add to reservation</button>
 		</div>
 {{-- 		<div class="col-md-4">
 			<img style="height: 120px; width: 150px; object-fit: cover;" src="{{$item->image_path}}"><br>
