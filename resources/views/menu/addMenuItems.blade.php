@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="container">
 	<div class="row">
 		<div class="col-md-3">
 			<h1>Add Menu Item</h1>

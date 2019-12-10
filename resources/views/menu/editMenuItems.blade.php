@@ -2,10 +2,10 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="container">
 	<div class="row">
 		<div class="col-md-3">
-			<h1>Edit Menu Item</h1>
+			<h1>Edit {{$menuItem->name}}</h1>
 			<form action="/update/{{$menuItem->id}}" method="POST" enctype="multipart/form-data">
 				@csrf
 				@method('PATCH')
