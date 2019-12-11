@@ -48,6 +48,7 @@ class MenuItemController extends Controller
         $item->image_path = "images/".$image->getClientOriginalName();
         $item->category_id = $request->category;
         $item->save();
+        session()->flash('success', 'Menu Item Added Successfully!');
         return redirect('/addmenuitems');
     }
 
@@ -97,6 +98,7 @@ class MenuItemController extends Controller
         $menuItem->description = $request->description;
         $menuItem->category_id = $request->category;
         $menuItem->save();
+        session()->flash('update', 'Menu Item Updated Successfully!');
         return redirect('/addmenuitems');
 
     }
@@ -110,6 +112,7 @@ class MenuItemController extends Controller
     public function destroy(MenuItem $menuItem)
     {
         $menuItem->delete();
+        session()->flash('delete', 'Menu Item Deleted Successfully!');
         return redirect('/addmenuitems');
     }
 }

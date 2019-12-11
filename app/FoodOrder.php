@@ -10,9 +10,9 @@ class FoodOrder extends Model
 	// 	return $this->belongsTo('\App\MenuOrder');
 	// }
 
-	// public function booking(){
-	// 	return $this->belongsTo('\App\Booking');
-	// }
+	public function booking(){
+		return $this->belongsTo('\App\Booking');
+	}
 
 	public function menuItems(){
 		return $this->belongsToMany('\App\Item', 'menu_orders')->withPivot('quantity', 'price')->withTimestamps();

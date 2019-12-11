@@ -4,10 +4,10 @@
 
 
 <div class="container">
-	<div class="row">
-		<div class="col-md-6">
+	<div class="row justify-content-center">
+		<div class="col-md-4">
 		<h1 class="text-center">Reservation Form</h1>
-			<form action="" method="POST">
+			<form action="/booking" method="POST">
 				@csrf
 
 				<label for="name">Name:</label>
@@ -15,7 +15,7 @@
 				<label for="start_date">Date:</label>
 				<input class="form-control" type="date" name="start_date" required>
 				<label for="num_of_guests">Number of Guests(max 10):</label>
-				<select class="form-control">
+				<select class="form-control" name="num_of_guests">
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
@@ -30,15 +30,15 @@
 				<label for="start_time">Start Time:</label>
 				<input class="form-control" type="time" name="start_time" required>
 				<label for="duration">Duration(in hours):</label>
-				<select class="form-control">
+				<select class="form-control" name="duration">
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
 				</select>
 				<label for="comments">Comments/Suggestions: </label>
-				<textarea class="form-control"></textarea>
-				<button class="btn btn-outline-dark mt-2">Submit and Order Later</button>
-				<a class="btn btn-outline-dark mt-2" href="/menu">Pre-order your food</a>
+				<textarea class="form-control" name="comments"></textarea>
+				<button class="btn btn-outline-dark mt-2 form-control">Submit</button>
+				{{-- <a class="btn btn-outline-dark mt-2" href="/menu">Pre-order your food</a> --}}
 			</form>
 
 		</div>

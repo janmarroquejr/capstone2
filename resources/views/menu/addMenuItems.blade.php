@@ -3,6 +3,38 @@
 @section('content')
 
 <div class="container">
+	<div class="row justify-content-center">
+		
+		@if(session()->has('success'))
+		<div class="alert alert-success alert-dismissable fade show" role="alert">
+			{{session()->get('success')}}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aira-hidden="true">&times;</span>
+			</button>
+		</div>
+		@endif
+
+		@if(session()->has('delete'))
+		<div class="alert alert-danger alert-dismissable fade show" role="alert">
+			{{session()->get('delete')}}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aira-hidden="true">&times;</span>
+			</button>
+		</div>
+		@endif
+
+		@if(session()->has('update'))
+		<div class="alert alert-secondary alert-dismissable fade show" role="alert">
+			{{session()->get('update')}}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aira-hidden="true">&times;</span>
+			</button>
+		</div>
+		@endif
+
+
+
+	</div>
 	<div class="row">
 		<div class="col-md-3">
 			<h1>Add Menu Item</h1>
@@ -20,10 +52,10 @@
 				<label for="categories">Category</label>
 				<select name="category" class="form-control">
 					@foreach($categories as $category)
-						<option value="{{$category->id}}">{{$category->name}}</option>
+					<option value="{{$category->id}}">{{$category->name}}</option>
 					@endforeach
 				</select>
-				<button type="submit" class="btn btn-primary form-control">Submit</button>
+				<button type="submit" class="btn btn-primary form-control mt-2">Submit</button>
 
 			</form>
 		</div>
@@ -53,7 +85,7 @@
 								@csrf
 								<button>Update</button>
 							</form>
-								
+
 							<a href="/deleteitem/{{$item->id}}" class="text-danger">Delete</a>
 						</td>
 					</tr>
@@ -71,7 +103,7 @@
 	</div>
 </div>
 
-				
+
 
 <script type="text/javascript">
 	$('#myModal').on('shown.bs.modal', function () {

@@ -45,6 +45,7 @@
 				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/booking/{{Auth::user()->id}}">{{ __('Reserve') }}</a>
 				@if(Auth::user()->role == 'admin')
 					<a class="list-group-item list-group-item-action bg-secondary text-light" href="/addmenuitems">{{ __('Add Menu Items') }}</a>
+					<a class="list-group-item list-group-item-action bg-secondary text-light" href="/viewbookings">{{ __('View Customer Reservations') }}</a>
 				@endif
 					<a id="navbarDropdown" class="list-group-item list-group-item-action bg-secondary text-light dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 						{{ Auth::user()->name }} <span class="caret"></span>

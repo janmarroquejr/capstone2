@@ -22,10 +22,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/menu', 'MenuItemController@show');
 
-Route::get('/booking/{id}', 'BookingController@show');
 
 
 Route::middleware(['auth'])->group(function(){
+	
+	Route::get('/booking/{id}', 'BookingController@show');
+	
+	
+});
+
+Route::middleware(['admin'])->group(function(){
+	Route::post('/booking', 'BookingController@store');
 	
 	Route::get('/addmenuitems', 'MenuItemController@create');
 
@@ -38,6 +45,10 @@ Route::middleware(['auth'])->group(function(){
 	Route::post('/edit/{menuItem}/edit', 'MenuItemController@edit');
 
 	Route::patch('/update/{menuItem}', 'MenuItemController@update');
+
+	Route::get('/viewbookings', 'BookingController@index');
+
+	Route::patch('/updatestatus/{id}', 'BookingController@changeStatus');
 });
 
 

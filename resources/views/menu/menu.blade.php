@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="container">
-	<div class="row">
+	<div class="row justify-content-center">
 		@foreach($categories as $category)
 			<div id="cat_buttons">
 				<a href="" class="btn btn-outline-dark">{{$category->name}}</a>
@@ -12,7 +12,7 @@
 		@endforeach
 	</div>
 	
-	<div class="row">
+	<div class="row justify-content-center">
 		@foreach($menu_items as $item)
 		<div class="card">
 			<div class="header">

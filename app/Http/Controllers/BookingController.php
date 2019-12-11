@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Booking;
 use Auth;
 
 class BookingController extends Controller
@@ -14,7 +15,15 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        $bookings = Booking::all();
+        return view('booking.adminbooking', compact('bookings')); 
+    }
+
+    public function changeStatus($id, Request $request){
+        $booking = Booking::find($id);
+        $booking->status = $request->status;
+        $booking->save();
+        return redirect('/viewbookings');
     }
 
     /**
@@ -24,7 +33,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +44,15 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $booking = new Booking;
+        $booking->duration = $request->duration;
+        $booking->num_of_guests = $request->num_of_guests;
+        $booking->start_date = $request->start_date;
+        $booking->start_time = $request->start_time;
+        $booking->comments = $request->comments;
+        $booking->user_id = Auth::user()->id;
+        $booking->food_order_id = null;
+        $booking->save();    
     }
 
     /**
