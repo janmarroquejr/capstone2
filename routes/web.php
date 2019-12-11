@@ -49,6 +49,8 @@ Route::middleware(['admin'])->group(function(){
 	Route::get('/viewbookings', 'BookingController@index');
 
 	Route::patch('/updatestatus/{id}', 'BookingController@changeStatus');
+
+	Route::get('/deletebooking/{id}', 'BookingController@destroy');
 });
 
 

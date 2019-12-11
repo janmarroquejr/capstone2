@@ -55,7 +55,7 @@
 				@else
 				<td>{{$booking->food_order_id}}</td>
 				@endif
-				<td><a href="/cancelbooking" class="text-danger">Cancel</a></td>
+				<td><a href="/cancelbooking/{{$booking->id}}" class="text-danger">Cancel</a></td>
 			</tr>
 			@empty
 			@endforelse
