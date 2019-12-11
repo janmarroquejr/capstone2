@@ -28,11 +28,11 @@ Route::middleware(['auth'])->group(function(){
 	
 	Route::get('/booking/{id}', 'BookingController@show');
 	
+	Route::post('/booking', 'BookingController@store');
 	
 });
 
 Route::middleware(['admin'])->group(function(){
-	Route::post('/booking', 'BookingController@store');
 	
 	Route::get('/addmenuitems', 'MenuItemController@create');
 

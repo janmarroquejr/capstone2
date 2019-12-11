@@ -67,7 +67,11 @@
 	</div>
 
 	<div id="page-content-wrapper">
-		<button id="menu-toggle"><i class="fas fa-bars"></i></i></button>
+		<button id="menu-toggle" type="button" class="hamburger animated fadeInLeft is-closed">
+			<span class="hamb-top"></span>
+			<span class="hamb-middle"></span>
+			<span class="hamb-bottom"></span>
+		</button>
 		<main class="py-4">
 			@yield('content')
 		</main>
@@ -87,6 +91,7 @@
 	
 	menuToggle.addEventListener('click', function(e) {
 		wrapper.classList.toggle("toggled");
+		menuToggle.classList.toggle('is-open');
 	});
 
 </script>

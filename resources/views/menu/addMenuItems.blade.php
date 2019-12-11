@@ -60,7 +60,7 @@
 			</form>
 		</div>
 
-		<div class="col-md-9">
+		<div class="col-md-9 overflow-auto">
 			<table class="table table-bordered table-striped">
 				<tr>
 					<th>#</th>

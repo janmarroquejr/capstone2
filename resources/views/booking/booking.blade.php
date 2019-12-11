@@ -5,7 +5,17 @@
 
 <div class="container">
 	<div class="row justify-content-center">
-		<div class="col-md-4">
+		<div class="col-md-4 col-sm-12">
+
+		@if(session()->has('reserved'))
+		<div class="alert alert-success alert-dismissable fade show" role="alert">
+			{{session()->get('reserved')}}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aira-hidden="true">&times;</span>
+			</button>
+		</div>
+		@endif
+
 		<h1 class="text-center">Reservation Form</h1>
 			<form action="/booking" method="POST">
 				@csrf
