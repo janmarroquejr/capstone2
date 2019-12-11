@@ -5,6 +5,14 @@
 
 <div class="container">
 	<div class="row">
+		@foreach($categories as $category)
+			<div id="cat_buttons">
+				<a href="" class="btn btn-outline-dark">{{$category->name}}</a>
+			</div>						
+		@endforeach
+	</div>
+	
+	<div class="row">
 		@foreach($menu_items as $item)
 		<div class="card">
 			<div class="header">
@@ -13,7 +21,7 @@
 					<a href="#"><i class="fa fa-heart-o"></i></a>
 				</div> --}}
 			</div>
-			<div class="text d-flex flex-column">
+			<div class="text d-flex flex-column mt-auto">
 				<h3 class="food">
 					{{$item->name}}
 				</h3>
@@ -24,7 +32,7 @@
 				</div>
 				<p class="info">{{$item->description}}</p>
 			</div>
-			<button href="#" class="btn mt-auto">Add to reservation</button>
+			<button href="#" class="btn">Add to reservation</button>
 		</div>
 		@endforeach
 	</div>

@@ -36,7 +36,7 @@ img {
 
 div .card {
     position: relative;
-    background: #fff;
+    background: #d3d3d3;
     width: 350px;
     margin: 20px auto;
     box-shadow: 0px 0px 30px 2px #000;
@@ -47,6 +47,7 @@ div .card {
     margin: 10px 30px;
     font-weight: bold;
     font-style: italic;
+    color: green;
 }
 
 button.btn {
@@ -63,8 +64,9 @@ button.btn {
 }
 
 button.btn:hover {
-    background: #17bebb;
+    background: #8b0000;
     transition: 250ms;
+    color: white;
 }
 
 .header {
@@ -105,4 +107,8 @@ button.btn:hover {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin: 5px 30px;
+}
+
+#cat_buttons{
+    padding: 1rem 1rem;
 }

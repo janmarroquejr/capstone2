@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.template')
 
 @section('content')
 <div class="container">
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Hello, {{Auth::user()->name}}! Welcome to Highersteaks!
                 </div>
             </div>
         </div>

@@ -22,6 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/menu', 'MenuItemController@show');
 
+Route::get('/booking/{id}', 'BookingController@show');
+
 
 Route::middleware(['auth'])->group(function(){
 	

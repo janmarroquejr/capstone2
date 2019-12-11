@@ -60,7 +60,8 @@ class MenuItemController extends Controller
     public function show(MenuItem $menuItem)
     {
         $menu_items = MenuItem::all();
-        return view('menu.menu', compact('menu_items'));
+        $categories = Category::all();
+        return view('menu.menu', compact('menu_items', 'categories'));
     }
 
     /**

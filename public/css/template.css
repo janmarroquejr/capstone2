@@ -1,8 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #d3d3d3
+}
+
 body {
     overflow-x: hidden;
 }
 
 #sidebar-wrapper {
+    background-color: gray;
     min-height: 100vh;
     margin-left: -15rem;
     -webkit-transition: margin 0.25s ease-out;
@@ -12,7 +20,7 @@ body {
 }
 
 #sidebar-wrapper .sidebar-heading {
-    padding: 0.875rem 1.25rem;
+    padding: 1.25rem;
     font-size: 1.2rem;
 }
 
@@ -30,7 +38,7 @@ body {
 
 @media (min-width: 768px) {
     #sidebar-wrapper {
-        margin-left: 0;
+        margin-left: -1rem;
     }
 
     #page-content-wrapper {
@@ -39,6 +47,27 @@ body {
     }
 
     #wrapper.toggled #sidebar-wrapper {
-        margin-left: -15rem;
+        margin-left: -16rem;
     }
+}
+
+@media (min-width: 370px) {
+    #sidebar-wrapper {
+        margin-left: -1rem;
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -16rem;
+    }
+}
+
+.head{
+    background-color: gray;
+    color: #8b0000;
+    font-family: 'Righteous', cursive;
 }

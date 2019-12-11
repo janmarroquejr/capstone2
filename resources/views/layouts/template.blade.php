@@ -15,6 +15,8 @@
 	<!-- Fonts -->
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Pacifico|Righteous&display=swap" rel="stylesheet">
 
 	<!-- Styles -->
 	<link href="{{ asset('css/template.css') }}" rel="stylesheet">
@@ -28,21 +30,23 @@
 
 <div class="d-flex container-fluid" id="wrapper">
 	<!-- Sidebar -->
-	<div class="bg-light border-right" id="sidebar-wrapper">
+	<div class="border-right" id="sidebar-wrapper">
 		{{-- <div class="sidebar-heading">Highsteaks</div> --}}
-		<h1>Highsteaks</h1>
+		<h1 class="head pb-2">Highersteaks</h1>
 		<div class="list-group list-group-flush">
-				<a class="list-group-item list-group-item-action bg-light" href="/menu">{{ __('Menu') }}</a>
+				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/menu">{{ __('Menu') }}</a>
+
 				@guest
-					<a class="list-group-item list-group-item-action bg-light" href="{{ route('login') }}">{{ __('Login') }}</a>
+					<a class="list-group-item list-group-item-action bg-secondary text-light" href="{{ route('login') }}">{{ __('Login') }}</a>
 				@if(Route::has('register'))
-					<a class="list-group-item list-group-item-action bg-light" href="{{ route('register') }}">{{ __('Register') }}</a>
+					<a class="list-group-item list-group-item-action bg-secondary text-light" href="{{ route('register') }}">{{ __('Join Us') }}</a>
 				@endif
 				@else
+				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/booking/{{Auth::user()->id}}">{{ __('Reserve') }}</a>
 				@if(Auth::user()->role == 'admin')
-					<a class="list-group-item list-group-item-action bg-light" href="/addmenuitems">{{ __('Add Menu Items') }}</a>
+					<a class="list-group-item list-group-item-action bg-secondary text-light" href="/addmenuitems">{{ __('Add Menu Items') }}</a>
 				@endif
-					<a id="navbarDropdown" class="list-group-item list-group-item-action bg-light dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+					<a id="navbarDropdown" class="list-group-item list-group-item-action bg-secondary text-light dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 						{{ Auth::user()->name }} <span class="caret"></span>
 					</a>
 
