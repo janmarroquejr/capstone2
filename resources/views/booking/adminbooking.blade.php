@@ -58,6 +58,7 @@
 				<td><a href="/cancelbooking/{{$booking->id}}" class="text-danger">Cancel</a></td>
 			</tr>
 			@empty
+			<td colspan="11" class="text-center">No reservations</td>
 			@endforelse
 		</tbody>
 	</table>
