@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container overflow-auto">
 	<table class="table table-bordered table-striped">
 		<tr>
 			<th>#</th>
@@ -15,7 +15,7 @@
 			<th>Comments</th>
 			<th>Status</th>
 			<th>Food Order #</th>
-			<th>Cancel?</th>
+			<th></th>
 		</tr>
 		<tbody>
 			@forelse($bookings as $index => $booking)
@@ -55,7 +55,7 @@
 				@else
 				<td>{{$booking->food_order_id}}</td>
 				@endif
-				<td><a href="/cancelbooking/{{$booking->id}}" class="text-danger">Cancel</a></td>
+				<td><a href="/cancelbooking/{{$booking->id}}" class="btn btn-outline-danger">Remove Record</a></td>
 			</tr>
 			@empty
 			<td colspan="11" class="text-center">No reservations</td>
