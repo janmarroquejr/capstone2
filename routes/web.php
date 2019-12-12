@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('login');
 });
 
 Auth::routes();
@@ -36,9 +36,7 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::get('/preorder/{id}/reserve', 'MenuItemController@displayPreOrders');
 
-	Route::get('/viewpreorders', function(){
-		return view('booking.preorders');
-	});
+	Route::get('/add', 'MenuItemController@storePreOrder');
 	
 });
 
@@ -60,7 +58,7 @@ Route::middleware(['admin'])->group(function(){
 
 	Route::patch('/updatestatus/{id}', 'BookingController@changeStatus');
 
-	Route::get('/deletebooking/{id}', 'BookingController@destroy');
+	Route::get('/cancelbooking/{id}', 'BookingController@destroy');
 });
 
 

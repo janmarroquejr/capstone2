@@ -31,6 +31,8 @@ class DropMenuItemsIdFromFoodOrders extends Migration
         Schema::table('food_orders', function (Blueprint $table) {
             $table->unsignedBigInteger('menu_items_id');
             $table->foreign('menu_items_id')->references('id')->on('menu_items');
+            $table->integer('total_price');
+            $table->integer('quantity');
         });
     }
 }

@@ -1,22 +1,6 @@
 /* /*@import url('https://fonts.googleapis.com/css?family=Roboto'); */
 
-// VARIABLES
-$bg: url("https://wallpaperscraft.com/image/coffee_coffee_beans_cupcake_candy_93301_1920x1080.jpg")
-no-repeat center;
-$food: url("http://img.taste.com.au/UZVXAdo7/taste/2016/11/chinese-egg-noodle-and-vegetable-stir-fry-94186-1.jpeg")
-no-repeat center;
-
-// FONT
-$font: "Roboto", sans-serif;
-
-// COLORS
-$white: #fff;
-$black: #212129;
-$gray: #9b9b9b;
-$heart: #17bebb;
-$star: #ffe500;
-$button: #ef3e36;
-*/ * {
+* {
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
@@ -75,7 +59,6 @@ button.btn:hover {
     height: 300px;
 }
 
-
 .info {
     margin: 10px 30px;
 }
@@ -98,43 +81,44 @@ button.btn:hover {
     margin: 5px 30px;
 }
 
-#cat_buttons{
+#cat_buttons {
     padding: 1rem 1rem;
 }
 
 #scroll {
-    position:fixed;
-    right:10px;
-    bottom:10px;
-    cursor:pointer;
-    width:50px;
-    height:50px;
-    background-color:#ef3e36;
-    text-indent:-9999px;
-    display:none;
-    -webkit-border-radius:60px;
-    -moz-border-radius:60px;
-    border-radius:60px
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    background-color: #ef3e36;
+    text-indent: -9999px;
+    display: none;
+    -webkit-border-radius: 60px;
+    -moz-border-radius: 60px;
+    border-radius: 60px;
 }
 #scroll span {
-    position:absolute;
-    top:50%;
-    left:50%;
-    margin-left:-8px;
-    margin-top:-12px;
-    height:0;
-    width:0;
-    border:8px solid transparent;
-    border-bottom-color:#ffffff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -12px;
+    height: 0;
+    width: 0;
+    border: 8px solid transparent;
+    border-bottom-color: #ffffff;
     z-index: ;
 }
 #scroll:hover {
-    background-color:#8b0000;
-    opacity:1;filter:"alpha(opacity=100)";
-    -ms-filter:"alpha(opacity=100)"; 
+    background-color: #8b0000;
+    opacity: 1;
+    filter: "alpha(opacity=100)";
+    -ms-filter: "alpha(opacity=100)";
 }
 
-@media(max-width: 320px){
+@media (max-width: 320px) {
     img {
         width: 258px;
         height: 300px;
@@ -142,7 +126,7 @@ button.btn:hover {
         overflow: hidden;
     }
 
-    .container{
+    .container {
         margin-bottom: 5rem;
     }
 }

@@ -27,7 +27,7 @@
 	<script src="https://kit.fontawesome.com/72d0d6bced.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
+			
 <div class="d-flex container-fluid" id="wrapper">
 	<!-- Sidebar -->
 	<div class="border-right sticky-top" id="sidebar-wrapper">
@@ -82,6 +82,7 @@
 			
 </div>
 
+
 		
 		
 		
@@ -96,6 +97,6 @@
 	});
 
 </script>
-
+@yield('script')
 </body>
 </html>

@@ -4,8 +4,15 @@
 @section('content')
 
 <div class="container">
+	<div id="alert-success" style="display: none;"class="text-center alert alert-success alert-dismissible fade show" role="alert">
+		<span>Added to reservation!</span>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
 
-	<a href="#" id="scroll" style="display: none;"><span></span></a>
+	{{-- <a href="#" id="scroll" style="display: none;"><span></span></a> --}}
+	{{-- {{collect(session('order'))->sum()}} --}}
 	<div class="row justify-content-center">
 		<div id="cat_buttons">
 			<a href="/menu" class="btn btn-outline-dark">All</a>
@@ -45,7 +52,7 @@
 		@endforeach
 	</div>
 </div>
-
+@endsection
 
 
 
@@ -68,8 +75,10 @@
 			return false; 
 		}); 
 	});
-	
+</script>
 
+@section('script')
+<script>
 	document.addEventListener('DOMContentLoaded', function(event){
 		let addToCart = document.querySelectorAll('#addToCart');
 
@@ -94,7 +103,9 @@
 				}).then(function(res){
 					return res.text();
 				}).then(function(data){
-					alert('Added to pre-orders!');
+					let alertSuccess = document.getElementById('alert-success');
+					alertSuccess.style.display = "block";
+
 				})
 			})
 		})

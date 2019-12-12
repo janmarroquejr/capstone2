@@ -27,7 +27,7 @@
 						</tr>
 				</tbody>
 			</table>
-			<a href="" class="btn btn-primary form-control">Add to reservation</a>
+			<a href="/add" class="btn btn-primary form-control">Add to reservation</a>
 		</div>
 	</div>
 </div>

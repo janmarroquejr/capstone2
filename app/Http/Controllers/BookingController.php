@@ -51,7 +51,7 @@ class BookingController extends Controller
         $booking->start_time = $request->start_time;
         $booking->comments = $request->comments;
         $booking->user_id = Auth::user()->id;
-        $booking->food_order_id = null;
+        // $booking->food_order_id = null;
         // dd($booking);
         $booking->save(); 
         session()->flash('reserved', 'Reservation Successful!');   

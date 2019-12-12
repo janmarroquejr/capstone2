@@ -15,11 +15,13 @@ class CreateMenuOrdersTable extends Migration
     {
         Schema::create('menu_orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('menu_items_id');
+            $table->unsignedBigInteger('menu_item_id');
             $table->unsignedBigInteger('food_order_id');
+            $table->integer('price');
+            $table->integer('quantity');
             $table->timestamps();
 
-            $table->foreign('menu_items_id')->references('id')->on('menu_items');
+            $table->foreign('menu_item_id')->references('id')->on('menu_items');
             $table->foreign('food_order_id')->references('id')->on('food_orders');
         });
     }

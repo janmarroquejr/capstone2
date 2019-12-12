@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\MenuItem;
 use \App\Category;
+use \App\FoodOrder;
+use Auth;
 use Illuminate\Http\Request;
 
 class MenuItemController extends Controller
@@ -154,6 +156,28 @@ class MenuItemController extends Controller
             $menu_items->push($menu_item);
         }
         return view("booking.preorders", compact("menu_items", 'total'));
+    }
+
+    public function storePreOrder() {
+        $order = session('order');
+        // $total = 0;
+        $menu_items = collect();
+
+        $foodOrder = new FoodOrder;
+        $foodOrder->user_id = Auth::user()->id;
+        // dd($order);
+        $foodOrder->save();
+
+        foreach($order as $id => $quantity){
+            $menu_item = MenuItem::find($id);
+            // dd($quantity);
+            $menu_item->quantity = $quantity;
+            
+            $foodOrder->menuItems()->attach($id, ['price' => $menu_item->price, 'quantity' => $quantity]);
+        }
+        // dd($quantity);
+        return back();
+
     }
 
     public function archive() {

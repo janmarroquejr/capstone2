@@ -13,8 +13,8 @@ class MenuItem extends Model
     	return $this->belongsTo('\App\Category');
 	}
 
-	public function food_orders(){
-		return $this->belongsToMany('\App\FoodOrder', 'menu_orders')->withPivot('quantity', 'price')->withTimestamps();
+	public function foodOrders(){
+		return $this->belongsToMany('\App\FoodOrder', 'menu_orders')->withPivot('price', 'quantity')->withTimestamps();
 	}
 		
 }
