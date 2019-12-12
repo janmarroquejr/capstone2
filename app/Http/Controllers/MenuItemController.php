@@ -155,4 +155,9 @@ class MenuItemController extends Controller
         }
         return view("booking.preorders", compact("menu_items", 'total'));
     }
+
+    public function archive() {
+        $menu_items = MenuItem::onlyTrashed()->get();
+        return view('', compact('menu_items'));
+    }
 }
