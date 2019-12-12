@@ -2,9 +2,9 @@
 
 // VARIABLES
 $bg: url("https://wallpaperscraft.com/image/coffee_coffee_beans_cupcake_candy_93301_1920x1080.jpg")
-    no-repeat center;
+no-repeat center;
 $food: url("http://img.taste.com.au/UZVXAdo7/taste/2016/11/chinese-egg-noodle-and-vegetable-stir-fry-94186-1.jpeg")
-    no-repeat center;
+no-repeat center;
 
 // FONT
 $font: "Roboto", sans-serif;
@@ -41,6 +41,7 @@ div .card {
     margin: 20px auto;
     box-shadow: 0px 0px 30px 2px #000;
     height: auto;
+    z-index: 0;
 }
 
 .price {
@@ -74,18 +75,6 @@ button.btn:hover {
     height: 300px;
 }
 
-.icon a .fa-heart-o {
-    position: absolute;
-    left: 85%;
-    bottom: 30.7%;
-    background: #17bebb;
-    color: white;
-    font-size: 1.3em;
-    font-weight: bold;
-    padding: 15px;
-    border-radius: 50%;
-    box-shadow: 0px 5px 30px 1px #17bebb;
-}
 
 .info {
     margin: 10px 30px;
@@ -111,4 +100,49 @@ button.btn:hover {
 
 #cat_buttons{
     padding: 1rem 1rem;
+}
+
+#scroll {
+    position:fixed;
+    right:10px;
+    bottom:10px;
+    cursor:pointer;
+    width:50px;
+    height:50px;
+    background-color:#ef3e36;
+    text-indent:-9999px;
+    display:none;
+    -webkit-border-radius:60px;
+    -moz-border-radius:60px;
+    border-radius:60px
+}
+#scroll span {
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-8px;
+    margin-top:-12px;
+    height:0;
+    width:0;
+    border:8px solid transparent;
+    border-bottom-color:#ffffff;
+    z-index: ;
+}
+#scroll:hover {
+    background-color:#8b0000;
+    opacity:1;filter:"alpha(opacity=100)";
+    -ms-filter:"alpha(opacity=100)"; 
+}
+
+@media(max-width: 320px){
+    img {
+        width: 258px;
+        height: 300px;
+        object-fit: cover;
+        overflow: hidden;
+    }
+
+    .container{
+        margin-bottom: 5rem;
+    }
 }

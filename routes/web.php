@@ -29,6 +29,16 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('/booking/{id}', 'BookingController@show');
 	
 	Route::post('/booking', 'BookingController@store');
+
+	Route::get('/filter/{id}', 'MenuItemController@displayByCategory');
+
+	Route::post('/preorder/{id}', 'MenuItemController@preOrder');
+
+	Route::get('/preorder/{id}/reserve', 'MenuItemController@displayPreOrders');
+
+	Route::get('/viewpreorders', function(){
+		return view('booking.preorders');
+	});
 	
 });
 
@@ -40,7 +50,7 @@ Route::middleware(['admin'])->group(function(){
 	
 	Route::post('/addtomenu', 'MenuItemController@store');
 
-	Route::get('/deleteitem/{menuItem}', 'MenuItemController@destroy');
+	Route::delete('/deleteitem/{menuItem}', 'MenuItemController@destroy');
 
 	Route::post('/edit/{menuItem}/edit', 'MenuItemController@edit');
 

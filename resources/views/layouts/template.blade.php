@@ -30,10 +30,10 @@
 
 <div class="d-flex container-fluid" id="wrapper">
 	<!-- Sidebar -->
-	<div class="border-right" id="sidebar-wrapper">
+	<div class="border-right sticky-top" id="sidebar-wrapper">
 		{{-- <div class="sidebar-heading">Highsteaks</div> --}}
 		<h1 class="head pb-2">Highersteaks</h1>
-		<div class="list-group list-group-flush">
+		<div class="list-group list-group-flush sticky-top">
 				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/menu">{{ __('Menu') }}</a>
 
 				@guest
@@ -43,6 +43,7 @@
 				@endif
 				@else
 				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/booking/{{Auth::user()->id}}">{{ __('Reserve') }}</a>
+				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/preorder/{{Auth::user()->id}}/reserve">{{ __('Reserve with Pre-Orders') }} <span class="badge badge-danger">{{collect(session('order'))->sum()}}</span></a>
 				@if(Auth::user()->role == 'admin')
 					<a class="list-group-item list-group-item-action bg-secondary text-light" href="/addmenuitems">{{ __('Add Menu Items') }}</a>
 					<a class="list-group-item list-group-item-action bg-secondary text-light" href="/viewbookings">{{ __('View Customer Reservations') }}</a>
@@ -67,7 +68,7 @@
 	</div>
 
 	<div id="page-content-wrapper">
-		<button id="menu-toggle" type="button" class="hamburger animated fadeInLeft is-closed">
+		<button id="menu-toggle" type="button" class="mt-3 hamburger animated fadeInLeft is-closed sticky-top">
 			<span class="hamb-top"></span>
 			<span class="hamb-middle"></span>
 			<span class="hamb-bottom"></span>

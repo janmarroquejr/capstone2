@@ -20,6 +20,13 @@ class MenuItemController extends Controller
         return view('menu.addMenuItems', compact('items', 'categories'));
     }
 
+    public function displayByCategory($id) {
+        $categories = Category::all();
+        $menu_items = MenuItem::select('name', 'price', 'description', 'image_path')->where('category_id', '=', $id)->get();
+        // dd($menu_items);
+        return view('menu.menu', compact('categories', 'menu_items'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -114,5 +121,38 @@ class MenuItemController extends Controller
         $menuItem->delete();
         session()->flash('delete', 'Menu Item Deleted Successfully!');
         return redirect('/addmenuitems');
+    }
+
+    public function preOrder($id, Request $request) {
+        
+        var_dump($request->quantity);
+        if(session()->has("order")){
+            $order = collect(session("order"));
+        } else {
+            $order = collect([]);
+        }
+
+        if($order->has($id)){
+            $order[$id] += $request->quantity;
+        }else {
+            $order[$id] = $request->quantity;
+        }
+        
+        session(["order" => $order]);
+
+        var_dump(session('order'));
+    }
+
+    public function displayPreOrders(){
+        $order = session('order');
+        $menu_items = collect();
+        $total = 0;
+        foreach($order as $itemId => $quantity){
+            $menu_item = MenuItem::find($itemId);
+            $total += $menu_item->price;
+            $menu_item->quantity = $quantity;
+            $menu_items->push($menu_item);
+        }
+        return view("booking.preorders", compact("menu_items", 'total'));
     }
 }

@@ -7,16 +7,16 @@
 	<div class="row justify-content-center">
 		<div class="col-md-4 col-sm-12">
 
-		@if(session()->has('reserved'))
-		<div class="alert alert-success alert-dismissable fade show" role="alert">
-			{{session()->get('reserved')}}
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aira-hidden="true">&times;</span>
-			</button>
-		</div>
-		@endif
+			@if(session()->has('reserved'))
+			<div class="alert alert-success alert-dismissable fade show" role="alert">
+				{{session()->get('reserved')}}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aira-hidden="true">&times;</span>
+				</button>
+			</div>
+			@endif
 
-		<h1 class="text-center">Reservation Form</h1>
+			<h1 class="text-center">Reservation Form</h1>
 			<form action="/booking" method="POST">
 				@csrf
 
@@ -55,4 +55,14 @@
 	</div>
 </div>
 
+<script
+src="https://code.jquery.com/jquery-3.4.1.min.js"
+integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+crossorigin="anonymous">
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.alert').delay(5000).fadeOut(300);
+	});
+</script>
 @endsection
