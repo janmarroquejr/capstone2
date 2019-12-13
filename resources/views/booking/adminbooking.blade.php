@@ -3,9 +3,11 @@
 @section('content')
 
 <div class="container overflow-auto">
+	<h1 class="text-center">All bookings</h1>
 	<table class="table table-bordered table-striped">
 		<tr>
 			<th>#</th>
+			<th>Registered At</th>
 			<th>Customer Name</th>
 			<th>Contact Number</th>
 			<th>Number of guests</th>
@@ -21,6 +23,7 @@
 			@forelse($bookings as $index => $booking)
 			<tr>
 				<td>{{++$index}}</td>
+				<td>{{$booking->created_at}}</td>
 				<td>{{$booking->user->name}}</td>
 				<td>{{$booking->user->contact_number}}</td>
 				<td>{{$booking->num_of_guests}}</td>

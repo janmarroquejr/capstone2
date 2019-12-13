@@ -21,8 +21,8 @@ class CreateMenuOrdersTable extends Migration
             $table->integer('quantity');
             $table->timestamps();
 
-            $table->foreign('menu_item_id')->references('id')->on('menu_items');
-            $table->foreign('food_order_id')->references('id')->on('food_orders');
+            $table->foreign('menu_item_id')->references('id')->on('menu_items')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('food_order_id')->references('id')->on('food_orders')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

@@ -1,0 +1,9 @@
+3 cruds
+use fetch on all
+alert message for all
+2 more middleware
+users can update their profile
+only superadmin has rights to activate/deactivate users
+use softDeletes
+use inverse seeding
+populate 150 data

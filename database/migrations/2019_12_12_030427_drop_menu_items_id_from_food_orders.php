@@ -17,7 +17,7 @@ class DropMenuItemsIdFromFoodOrders extends Migration
             $table->dropForeign(['menu_items_id']);
             $table->dropColumn('menu_items_id');
             $table->dropColumn('total_price');
-            $table->dropColumn('quantity');
+            // $table->dropColumn('quantity');
         });
     }
 
@@ -32,7 +32,7 @@ class DropMenuItemsIdFromFoodOrders extends Migration
             $table->unsignedBigInteger('menu_items_id');
             $table->foreign('menu_items_id')->references('id')->on('menu_items');
             $table->integer('total_price');
-            $table->integer('quantity');
+            // $table->integer('quantity');
         });
     }
 }

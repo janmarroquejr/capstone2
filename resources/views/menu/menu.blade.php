@@ -11,7 +11,14 @@
 		</button>
 	</div>
 
-	{{-- <a href="#" id="scroll" style="display: none;"><span></span></a> --}}
+	<div id="alert-danger" style="display: none;"class="text-center alert alert-danger alert-dismissible fade show" role="alert">
+		<span>Please specify quantity!</span>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	<a href="#" id="scroll" style="display: none;"><span></span></a>
 	{{-- {{collect(session('order'))->sum()}} --}}
 	<div class="row justify-content-center">
 		<div id="cat_buttons">
@@ -27,9 +34,9 @@
 	<div class="row justify-content-center">
 		@foreach($menu_items as $item)
 		<div class="col-lg-4 col-md-4 col-sm-12 d-flex align-items-stretch">
-		<div class="card">
-			<div class="header">
-				<img src="{{asset($item->image_path)}}">
+			<div class="card">
+				<div class="header">
+					<img src="{{asset($item->image_path)}}">
 				{{-- <div class="icon">
 					<a href="#"><i class="fa fa-heart-o"></i></a>
 				</div> --}}
@@ -45,12 +52,12 @@
 				</div>
 				<p class="info">{{$item->description}}</p>
 			</div>
-			<input type="number" name="quantity" min=0 class="form-control">
+			<input type="number" name="quantity" min=1 class="form-control" value="1">
 			<button data-id="{{$item->id}}" id="addToCart" class="btn">Add to reservation</button>
 		</div>
 	</div>
-		@endforeach
-	</div>
+	@endforeach
+</div>
 </div>
 @endsection
 
@@ -60,7 +67,7 @@
 	
 	
 </script>
-	
+
 <script type="text/javascript">
 	$(document).ready(function(){ 
 		$(window).scroll(function(){ 
@@ -79,6 +86,10 @@
 
 @section('script')
 <script>
+	$(document).ready(function(){
+		$('.alert').delay(5000).fadeOut(300);
+	});
+	
 	document.addEventListener('DOMContentLoaded', function(event){
 		let addToCart = document.querySelectorAll('#addToCart');
 
@@ -94,8 +105,7 @@
 				data.append('quantity', quantity);
 				data.append('_token', token);
 
-				console.log(id);
-				console.log(quantity);
+				
 				
 				fetch(url, {
 					method: 'POST',
@@ -104,7 +114,15 @@
 					return res.text();
 				}).then(function(data){
 					let alertSuccess = document.getElementById('alert-success');
-					alertSuccess.style.display = "block";
+					
+
+					let alertDanger = document.getElementById('alert-danger');
+
+					if(quantity == ""){
+						alertDanger.style.display = "block";
+					}else{
+						alertSuccess.style.display = "block";
+					}
 
 				})
 			})

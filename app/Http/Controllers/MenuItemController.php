@@ -126,8 +126,8 @@ class MenuItemController extends Controller
     }
 
     public function preOrder($id, Request $request) {
-        
-        var_dump($request->quantity);
+
+        // var_dump($request->quantity);
         if(session()->has("order")){
             $order = collect(session("order"));
         } else {
@@ -142,41 +142,62 @@ class MenuItemController extends Controller
         
         session(["order" => $order]);
 
-        var_dump(session('order'));
+        // var_dump(session('order'));
     }
 
-    public function displayPreOrders(){
+    public function displayPreOrders($id){
         $order = session('order');
         $menu_items = collect();
         $total = 0;
-        foreach($order as $itemId => $quantity){
-            $menu_item = MenuItem::find($itemId);
-            $total += $menu_item->price;
-            $menu_item->quantity = $quantity;
-            $menu_items->push($menu_item);
+        $user = \App\User::find(Auth::user()->id = $id);
+        $food_id = \App\FoodOrder::select('id')->where('user_id', Auth::user()->id = $id);
+        // $food_id = null;
+        // dd($food_id);
+        if(session('order') == !null){
+            foreach($order as $itemId => $quantity){
+                $menu_item = MenuItem::find($itemId);
+                $menu_item->quantity = $quantity;
+                $total += $menu_item->price * $menu_item->quantity;
+                $menu_items->push($menu_item);
+            }
         }
-        return view("booking.preorders", compact("menu_items", 'total'));
+        else{
+            return view("booking.preorders", compact("menu_items", 'total', 'user', 'food_id'));
+        }
+        return view("booking.preorders", compact("menu_items", 'total', 'user', 'food_id'));
     }
 
     public function storePreOrder() {
         $order = session('order');
         // $total = 0;
-        $menu_items = collect();
+        $menuItems = collect();
 
         $foodOrder = new FoodOrder;
         $foodOrder->user_id = Auth::user()->id;
         // dd($order);
         $foodOrder->save();
+        
+        // dd($order);
 
-        foreach($order as $id => $quantity){
-            $menu_item = MenuItem::find($id);
-            // dd($quantity);
-            $menu_item->quantity = $quantity;
-            
-            $foodOrder->menuItems()->attach($id, ['price' => $menu_item->price, 'quantity' => $quantity]);
+        if($order == !null){
+            foreach($order as $id => $quantity){
+                $menu_item = MenuItem::find($id);
+                // dd($quantity);
+                $menu_item->quantity = $quantity;
+
+                $foodOrder->menuItems()->attach($id, ['price' => $menu_item->price, 'quantity' => $quantity]);
+                
+            }
+            session()->forget('order');
+            session()->flash('pre-ordered', 'Food added to reservation!');
+            return back();
         }
-        // dd($quantity);
-        return back();
+
+        else{
+            return back();
+        }
+
+
 
     }
 

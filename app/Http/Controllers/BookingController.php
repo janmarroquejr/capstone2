@@ -33,7 +33,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -51,7 +51,7 @@ class BookingController extends Controller
         $booking->start_time = $request->start_time;
         $booking->comments = $request->comments;
         $booking->user_id = Auth::user()->id;
-        // $booking->food_order_id = null;
+
         // dd($booking);
         $booking->save(); 
         session()->flash('reserved', 'Reservation Successful!');   
@@ -67,7 +67,9 @@ class BookingController extends Controller
     public function show($id)
     {
         $user = \App\User::find(Auth::user()->id = $id);
-        return view('booking.booking', compact('user'));
+        $food_id = \App\FoodOrder::find(Auth::user()->id = $id);
+        
+        return view('booking.booking', compact('user', 'food_id'));
     }
 
     /**
@@ -104,5 +106,17 @@ class BookingController extends Controller
         $booking = Booking::find($id);
         $booking->delete();
         return redirect('/viewbookings');
+    }
+
+    public function removeItem($id){
+        $order = collect(session("order"));
+        $order->forget($id);
+
+        session(["order" => $order]);
+
+        session()->flash('removed', 'Removed order successfully!');
+
+        return back();
+
     }
 }

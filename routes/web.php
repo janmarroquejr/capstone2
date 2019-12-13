@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -26,7 +26,7 @@ Route::get('/menu', 'MenuItemController@show');
 
 Route::middleware(['auth'])->group(function(){
 	
-	Route::get('/booking/{id}', 'BookingController@show');
+	// Route::get('/booking/{id}', 'BookingController@show');
 	
 	Route::post('/booking', 'BookingController@store');
 
@@ -37,6 +37,8 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('/preorder/{id}/reserve', 'MenuItemController@displayPreOrders');
 
 	Route::get('/add', 'MenuItemController@storePreOrder');
+
+	Route::get('/removeitem/{id}', 'BookingController@removeItem');
 	
 });
 

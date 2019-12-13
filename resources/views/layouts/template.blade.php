@@ -34,7 +34,7 @@
 		{{-- <div class="sidebar-heading">Highsteaks</div> --}}
 		<h1 class="head pb-2">Highersteaks</h1>
 		<div class="list-group list-group-flush sticky-top">
-				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/menu">{{ __('Menu') }}</a>
+				
 
 				@guest
 					<a class="list-group-item list-group-item-action bg-secondary text-light" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -42,8 +42,11 @@
 					<a class="list-group-item list-group-item-action bg-secondary text-light" href="{{ route('register') }}">{{ __('Join Us') }}</a>
 				@endif
 				@else
-				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/booking/{{Auth::user()->id}}">{{ __('Reserve') }}</a>
-				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/preorder/{{Auth::user()->id}}/reserve">{{ __('Reserve with Pre-Orders') }} <span class="badge badge-danger">{{collect(session('order'))->sum()}}</span></a>
+				{{-- <a class="list-group-item list-group-item-action bg-secondary text-light" href="/booking/{{Auth::user()->id}}">{{ __('Reserve') }}</a> --}}
+				@if(Auth::user()->role == 'user')
+				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/menu">{{ __('Menu') }}</a>
+				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/preorder/{{Auth::user()->id}}/reserve">{{ __('Reserve') }} <span class="badge badge-danger">{{collect(session('order'))->sum()}}</span></a>
+				@endif
 				@if(Auth::user()->role == 'admin')
 					<a class="list-group-item list-group-item-action bg-secondary text-light" href="/addmenuitems">{{ __('Add Menu Items') }}</a>
 					<a class="list-group-item list-group-item-action bg-secondary text-light" href="/viewbookings">{{ __('View Customer Reservations') }}</a>
@@ -97,6 +100,7 @@
 	});
 
 </script>
+@yield('jquery')
 @yield('script')
 </body>
 </html>

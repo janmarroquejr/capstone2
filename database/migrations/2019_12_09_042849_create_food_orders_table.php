@@ -20,8 +20,8 @@ class CreateFoodOrdersTable extends Migration
             $table->integer('total_price');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('menu_items_id')->references('id')->on('menu_items');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('menu_items_id')->references('id')->on('menu_items')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

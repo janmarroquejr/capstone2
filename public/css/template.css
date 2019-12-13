@@ -6,8 +6,11 @@
 }
 
 body {
-    overflow-x: visible;
     background-color: #d3d3d3;
+}
+
+#page-content-wrapper{
+    overflow-x: visible;
 }
 
 #sidebar-wrapper {

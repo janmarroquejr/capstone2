@@ -16,5 +16,4 @@ class FoodOrder extends Model
 	public function booking(){
 		return $this->belongsTo('\App\Booking');
 	}
-
 }
