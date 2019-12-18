@@ -16,8 +16,17 @@
 			</div>
 			@endif
 
+			@if(session()->has('denied'))
+			<div class="alert alert-danger alert-dismissable fade show" role="alert">
+				{{session()->get('denied')}}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aira-hidden="true">&times;</span>
+				</button>
+			</div>
+			@endif
+
 			
-			<form action="/booking" method="POST" id="form">
+		<form action="/booking/{{Auth::user()->id}}" method="POST" id="form">
 				@csrf
 
 				<label for="name">Name:</label>
@@ -54,7 +63,7 @@
 					You have pre-orders
 					@endif
 				</p>
-				<button class="btn btn-outline-dark mt-2 form-control" onclick="myFunction()">Submit</button>
+				<button class="btn btn-outline-dark mt-2 form-control">Submit</button>
 				{{-- <a class="btn btn-outline-dark mt-2" href="/menu">Pre-order your food</a> --}}
 			</form>
 
@@ -126,8 +135,8 @@
 		$('.alert').delay(2000).fadeOut(300);
 	});
 
-	function myFunction() {
-		document.getElementById("form").reset();
-	}
+	// function myFunction() {
+	// 	document.getElementById("form").reset();
+	// }
 </script>
 @endsection

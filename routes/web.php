@@ -28,7 +28,7 @@ Route::middleware(['auth'])->group(function(){
 	
 	// Route::get('/booking/{id}', 'BookingController@show');
 	
-	Route::post('/booking', 'BookingController@store');
+	Route::post('/booking/{id}', 'BookingController@store');
 
 	Route::get('/filter/{id}', 'MenuItemController@displayByCategory');
 

@@ -42,21 +42,39 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
+        // $checker = Booking::select('user_id')->where('user_id', $id)->get();
+        $user_id = Booking::select('user_id')->where('user_id', $id)->get();
         $booking = new Booking;
+        $booking->user_id = Auth::user()->id;
         $booking->duration = $request->duration;
         $booking->num_of_guests = $request->num_of_guests;
         $booking->start_date = $request->start_date;
         $booking->start_time = $request->start_time;
         $booking->comments = $request->comments;
-        $booking->user_id = Auth::user()->id;
+        $checker = $booking->user_id;
 
+        // dd(count($user_id));
+        
+        if(count($user_id) == 0){
+            $booking->save(); 
+            session()->flash('reserved', 'Reservation Successful!');   
+            return back();
+        }
+            
+        else{
+            session()->flash('denied', 'You already have an active reservation!'); 
+            return back();  
+        }
+        
         // dd($booking);
-        $booking->save(); 
-        session()->flash('reserved', 'Reservation Successful!');   
-        return back();
     }
+
+        
+
+
+
 
     /**
      * Display the specified resource.
