@@ -47,9 +47,12 @@
 				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/menu">{{ __('Menu') }}</a>
 				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/preorder/{{Auth::user()->id}}/reserve">{{ __('Reserve') }} <span class="badge badge-danger">{{collect(session('order'))->sum()}}</span></a>
 				@endif
-				@if(Auth::user()->role == 'admin')
+				@if(Auth::user()->role == 'admin' || Auth::user()->role == 'super_admin')
 					<a class="list-group-item list-group-item-action bg-secondary text-light" href="/addmenuitems">{{ __('Add Menu Items') }}</a>
 					<a class="list-group-item list-group-item-action bg-secondary text-light" href="/viewbookings">{{ __('View Customer Reservations') }}</a>
+				@endif
+				@if(Auth::user()->role == 'super_admin')
+					<a class="list-group-item list-group-item-action bg-secondary text-light" href="/users">{{ __('User control') }}</a>
 				@endif
 					<a id="navbarDropdown" class="list-group-item list-group-item-action bg-secondary text-light dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 						{{ Auth::user()->name }} <span class="caret"></span>

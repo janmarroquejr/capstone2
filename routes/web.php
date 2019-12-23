@@ -63,6 +63,28 @@ Route::middleware(['admin'])->group(function(){
 	Route::get('/cancelbooking/{id}', 'BookingController@destroy');
 });
 
+Route::middleware(['super_admin'])->group(function(){
+	
+	Route::get('/addmenuitems', 'MenuItemController@create');
+
+	Route::get('/addmenuitems', 'MenuItemController@index');
+	
+	Route::post('/addtomenu', 'MenuItemController@store');
+
+	Route::delete('/deleteitem/{menuItem}', 'MenuItemController@destroy');
+
+	Route::post('/edit/{menuItem}/edit', 'MenuItemController@edit');
+
+	Route::patch('/update/{menuItem}', 'MenuItemController@update');
+
+	Route::get('/viewbookings', 'BookingController@index');
+
+	Route::patch('/updatestatus/{id}', 'BookingController@changeStatus');
+
+	Route::get('/cancelbooking/{id}', 'BookingController@destroy');
+	
+	Route::get('/users', 'UserController@index');
+});
 
 
 
