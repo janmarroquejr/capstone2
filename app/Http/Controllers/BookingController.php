@@ -45,7 +45,7 @@ class BookingController extends Controller
     public function store(Request $request, $id)
     {
         // $checker = Booking::select('user_id')->where('user_id', $id)->get();
-        $user_id = Booking::select('user_id')->where('user_id', $id)->get();
+        $user_id = Booking::select('user_id')->where(['user_id', $id], ['status', 0])->get();
         $booking = new Booking;
         $booking->user_id = Auth::user()->id;
         $booking->duration = $request->duration;
@@ -122,7 +122,7 @@ class BookingController extends Controller
     public function destroy($id)
     {
         $booking = Booking::find($id);
-        $booking->delete();
+        $booking->status = 1;
         return redirect('/viewbookings');
     }
 

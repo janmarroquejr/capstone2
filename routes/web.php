@@ -84,6 +84,11 @@ Route::middleware(['super_admin'])->group(function(){
 	Route::get('/cancelbooking/{id}', 'BookingController@destroy');
 	
 	Route::get('/users', 'UserController@index');
+
+	Route::get('/deleteuser/{id}', 'UserController@destroy');
+
+	Route::get('/restoreuser/{id}', 'UserController@restore');
+	
 });
 
 

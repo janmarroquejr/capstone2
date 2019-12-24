@@ -15,8 +15,14 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('super_admin.users', compact('users'));
+        $deleted = User::onlyTrashed()->get();
+        return view('super_admin.users', compact('users', 'deleted'));
     }
+
+    // public function archive(){
+    //     $deleted = User::onlyTrashed()->get();
+    //     return view('super_admin.users', compact('deleted'));
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -79,8 +85,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $id)
     {
-        //
+        $id->delete();
+        return back();
+    }
+
+    public function restore($id)
+    {
+        User::withTrashed()->find($id)->restore();
+        return back();
     }
 }

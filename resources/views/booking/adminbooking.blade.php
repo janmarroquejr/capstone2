@@ -16,7 +16,7 @@
 			<th>Time</th>
 			<th>Comments</th>
 			<th>Status</th>
-			<th>Food Order #</th>
+			{{-- <th>Food Order #</th> --}}
 			<th></th>
 		</tr>
 		<tbody>
@@ -34,31 +34,33 @@
 				@if($booking->status == 0)
 				<td>
 					Pending
-					<form action="/updatestatus/{{$booking->id}}" method="POST">
+					{{-- <form action="/updatestatus/{{$booking->id}}" method="POST">
 						@csrf
 						@method('PATCH')
 						<input class="form-control" type="number" name="status" value="{{$booking->status}}" min=0 max=1>
 						<button>Update</button>
-					</form> 
+					</form>  --}}
 						
 				</td>
 				@else
 				<td>
 					Completed 
-					<form action="/updatestatus/{{$booking->id}}" method="POST">
+					{{-- <form action="/updatestatus/{{$booking->id}}" method="POST">
 						@csrf
 						@method('PATCH')
 						<input class="form-control" type="number" name="status" value="{{$booking->status}}" min=0 max=1>
 						<button>Update</button>
-					</form> 
+					</form>  --}}
 				</td>
 				@endif
-				@if($booking->food_order_id == null)
+				{{-- @if($booking->food_order_id == null)
 				<td>No pre-order</td>
 				@else
 				<td>{{$booking->food_order_id}}</td>
-				@endif
-				<td><a href="/cancelbooking/{{$booking->id}}" class="btn btn-outline-danger">Remove Record</a></td>
+				@endif --}}
+				<td>
+					<a href="/cancelbooking/{{$booking->id}}" class="btn btn-outline-danger">Complete</a>
+				</td>
 			</tr>
 			@empty
 			<td colspan="11" class="text-center">No reservations</td>
