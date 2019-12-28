@@ -92,6 +92,8 @@
 		
 		
 		
+@yield('jquery')
+@yield('script')
 
 <script type="text/javascript">
 	let menuToggle = document.getElementById('menu-toggle');
@@ -103,7 +105,5 @@
 	});
 
 </script>
-@yield('jquery')
-@yield('script')
 </body>
 </html>
