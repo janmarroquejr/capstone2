@@ -45,7 +45,7 @@
 				{{-- <a class="list-group-item list-group-item-action bg-secondary text-light" href="/booking/{{Auth::user()->id}}">{{ __('Reserve') }}</a> --}}
 				@if(Auth::user()->role == 'user')
 				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/menu">{{ __('Menu') }}</a>
-				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/preorder/{{Auth::user()->id}}/reserve">{{ __('Reserve') }} <span class="badge badge-danger">{{collect(session('order'))->sum()}}</span></a>
+				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/preorder/{{Auth::user()->id}}/reserve">{{ __('Reserve') }}</a>
 				@endif
 				@if(Auth::user()->role == 'admin' || Auth::user()->role == 'super_admin')
 					<a class="list-group-item list-group-item-action bg-secondary text-light" href="/addmenuitems">{{ __('Add Menu Items') }}</a>
@@ -59,6 +59,12 @@
 					</a>
 
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="/editaccount/{{Auth::user()->id}}"
+						onclick="event.preventDefault();
+						document.getElementById('edit-form').submit();">
+						Edit Account Info
+					</a>
+
 					<a class="dropdown-item" href="{{ route('logout') }}"
 						onclick="event.preventDefault();
 						document.getElementById('logout-form').submit();">
@@ -66,6 +72,9 @@
 					</a>
 
 					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						@csrf
+					</form>
+					<form id="edit-form" action="/editaccount/{{Auth::user()->id}}" method="POST" style="display: none;">
 						@csrf
 					</form>
 				</div>

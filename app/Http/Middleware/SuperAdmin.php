@@ -16,7 +16,7 @@ class SuperAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user() && Auth::user()->role == 'super_admin'){
+        if(Auth::user() && (Auth::user()->role == 'super_admin' || Auth::user()->role == 'admin')){
             return $next($request);
         }
         return redirect('/menu');

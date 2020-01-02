@@ -39,10 +39,14 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('/add', 'MenuItemController@storePreOrder');
 
 	Route::get('/removeitem/{id}', 'BookingController@removeItem');
+
+	Route::post('/editaccount/{id}', 'UserController@update');
+
+	Route::patch('/edituser/{id}', 'UserController@edit');
 	
 });
 
-Route::middleware(['admin'])->group(function(){
+Route::middleware(['admin'], ['super_admin'])->group(function(){
 	
 	Route::get('/addmenuitems', 'MenuItemController@create');
 
@@ -65,6 +69,12 @@ Route::middleware(['admin'])->group(function(){
 
 Route::middleware(['super_admin'])->group(function(){
 	
+	Route::get('/users', 'UserController@index');
+	
+	Route::post('/deleteuser/{id}', 'UserController@destroy');
+	
+	Route::post('/restoreuser/{id}', 'UserController@restore');
+
 	Route::get('/addmenuitems', 'MenuItemController@create');
 
 	Route::get('/addmenuitems', 'MenuItemController@index');
@@ -82,12 +92,6 @@ Route::middleware(['super_admin'])->group(function(){
 	Route::patch('/updatestatus/{id}', 'BookingController@changeStatus');
 
 	Route::get('/cancelbooking/{id}', 'BookingController@destroy');
-	
-	Route::get('/users', 'UserController@index');
-
-	Route::post('/deleteuser/{id}', 'UserController@destroy');
-
-	Route::post('/restoreuser/{id}', 'UserController@restore');
 	
 });
 
