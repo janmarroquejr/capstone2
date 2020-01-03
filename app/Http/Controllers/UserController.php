@@ -19,6 +19,12 @@ class UserController extends Controller
         return view('super_admin.users', compact('users', 'deleted'));
     }
 
+    public function deactivated()
+    {
+        $deleted = User::onlyTrashed()->get();
+        return view('super_admin.deactivated', compact('deleted'));
+    }
+
     // public function archive(){
     //     $deleted = User::onlyTrashed()->get();
     //     return view('super_admin.users', compact('deleted'));

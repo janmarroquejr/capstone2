@@ -69,6 +69,21 @@
             </div>
         </div>
     </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">User Accounts</div>
+                <div class="card-body">
+                    <span>Super Admin: superadmin@mail.com</span><br>
+                    <span>Admin: admin@mail.com</span><br>
+                    <span>User 1: user@mail.com</span><br>
+                    <span>User 2: user2@mail.com</span><br>
+                    <span>Password: <strong>password123</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 

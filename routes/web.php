@@ -93,6 +93,8 @@ Route::middleware(['super_admin'])->group(function(){
 
 	Route::get('/cancelbooking/{id}', 'BookingController@destroy');
 	
+	Route::get('/deactivated', 'UserController@deactivated');
+	
 });
 
 
