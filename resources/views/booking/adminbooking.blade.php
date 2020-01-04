@@ -4,7 +4,7 @@
 
 <div class="container overflow-auto">
 	<h1 class="text-center">All bookings</h1>
-	<table class="table table-bordered table-striped">
+	<table class="table table-bordered">
 		<tr>
 			<th>#</th>
 			<th>Registered At</th>
@@ -16,7 +16,6 @@
 			<th>Time</th>
 			<th>Comments</th>
 			<th>Status</th>
-			{{-- <th>Food Order #</th> --}}
 			<th></th>
 		</tr>
 		<tbody>

@@ -82,7 +82,7 @@
 		</div>
 	</div>
 
-	<div id="page-content-wrapper">
+	<div id="page-content-wrapper" class="mt-3">
 		<button id="menu-toggle" type="button" class="mt-3 hamburger animated fadeInLeft is-closed sticky-top">
 			<span class="hamb-top"></span>
 			<span class="hamb-middle"></span>

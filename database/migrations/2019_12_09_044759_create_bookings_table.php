@@ -21,7 +21,7 @@ class CreateBookingsTable extends Migration
             $table->string('comments');
             $table->boolean('isPaid');
             $table->string('payment_method');
-            $table->unsignedBigInteger('user_id')->unique();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('food_order_id');
             $table->timestamps();
 

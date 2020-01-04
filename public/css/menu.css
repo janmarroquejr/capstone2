@@ -4,15 +4,81 @@
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
-    list-style-type: none;
-    text-decoration: none;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -o-box-sizing: border-box;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
-img {
+.navbar {
+    /* position: sticky; */
+    top: 0;
+    display: flex;
+    width: 100%;
+    height: 60px;
+    background: rgba(222, 184, 135, 0.7);
+    /* border: 2px solid blue; */
+    z-index: 1;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    width: 100%;
+    justify-content: center;
+}
+
+.navbar ul li {
+    margin: 0 1rem;
+    padding: 1rem;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: darkslategray;
+}
+
+.navbar ul li a:hover {
+    color: lightslategray;
+}
+
+.menu-item {
+    display: flex;
+    height: 8rem;
+    width: 50vh;
+    border: 2px solid darkred;
+    margin: 2rem 0;
+    padding: 2px;
+    background-color: burlywood;
+}
+
+.menu-item .img {
+    display: flex;
+    width: auto;
+}
+
+.menu-item .img img {
+    width: 8rem;
+    object-fit: cover;
+    border: 1px solid darkslategrey;
+}
+
+.menu-item .desc {
+    font-style: italic;
+    color: #8b0000;
+    display: flex;
+}
+
+.menu-item .price {
+    font-style: normal;
+    color: darkgreen;
+    display: flex;
+}
+
+.menu-item .item-body {
+    padding: 1rem;
+}
+
+/* img {
     width: 350px;
     height: 300px;
     object-fit: cover;
@@ -83,7 +149,7 @@ button.btn:hover {
 
 #cat_buttons {
     padding: 1rem 1rem;
-}
+} */
 
 #scroll {
     position: fixed;
@@ -109,7 +175,7 @@ button.btn:hover {
     width: 0;
     border: 8px solid transparent;
     border-bottom-color: #ffffff;
-    z-index: ;
+    z-index: 1;
 }
 #scroll:hover {
     background-color: #8b0000;

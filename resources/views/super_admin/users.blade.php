@@ -84,7 +84,7 @@
                 data.append('_token', token);
 
                 //hide deleted row
-                btn.parentNode.parentNode.style.display = "none";
+                // btn.parentNode.parentNode.style.display = "none";
                 
                 fetch(url, {
                     method: 'POST',
@@ -94,6 +94,7 @@
                 }).then(function(data){
                     let alertDanger = document.getElementById('alert-danger');
                     alertDanger.style.display = "block";
+                    btn.parentNode.parentNode.style.display = "none";
                 })
             })
         })

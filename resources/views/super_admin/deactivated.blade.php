@@ -71,7 +71,7 @@
                     let url = '/restoreuser/'+id;
                     let data = new FormData;
                     data.append('_token', token);
-                    btn.parentNode.parentNode.style.display = "none";
+                    
                     fetch(url, {
                         method: 'POST',
                         body: data
@@ -80,6 +80,7 @@
                     }).then(function(data){
                         let alertSuccess = document.getElementById('alert-success');
                         alertSuccess.style.display = "block";
+                        btn.parentNode.parentNode.style.display = "none";
                     })
                 })
             })

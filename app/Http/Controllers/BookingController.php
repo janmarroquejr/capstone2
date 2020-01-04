@@ -45,7 +45,7 @@ class BookingController extends Controller
     public function store(Request $request, $id)
     {
         // $checker = Booking::select('user_id')->where('user_id', $id)->get();
-        $user_id = Booking::select('user_id')->where(['user_id', $id], ['status', 0])->get();
+        $user_id = Booking::select('id')->where([['user_id', "=", $id], ['status', "=", 0]])->get();
         $booking = new Booking;
         $booking->user_id = Auth::user()->id;
         $booking->duration = $request->duration;
@@ -53,18 +53,19 @@ class BookingController extends Controller
         $booking->start_date = $request->start_date;
         $booking->start_time = $request->start_time;
         $booking->comments = $request->comments;
-        $checker = $booking->user_id;
 
-        // dd(count($user_id));
+        //dd(count($user_id));
         
         if(count($user_id) == 0){
-            $booking->save(); 
-            session()->flash('reserved', 'Reservation Successful!');   
+            $booking->save();
+            session()->flash('reserved', 'Reservation Successful!'); 
+            
             return back();
         }
             
         else{
-            session()->flash('denied', 'You already have an active reservation!'); 
+            session()->flash('denied', 'You already have an active reservation!');
+            
             return back();  
         }
         
@@ -121,8 +122,13 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
+        
+    }
+
+    public function complete($id){
         $booking = Booking::find($id);
         $booking->status = 1;
+        $booking->save();
         return redirect('/viewbookings');
     }
 
@@ -135,6 +141,5 @@ class BookingController extends Controller
         session()->flash('removed', 'Removed order successfully!');
 
         return back();
-
     }
 }

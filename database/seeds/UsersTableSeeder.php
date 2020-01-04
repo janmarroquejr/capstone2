@@ -30,6 +30,7 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => NULL,
                 'created_at' => '2019-12-10 10:49:48',
                 'updated_at' => '2019-12-10 10:49:48',
+                'deleted_at' => NULL,
             ),
             1 => 
             array (
@@ -44,6 +45,7 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => NULL,
                 'created_at' => '2019-12-10 10:50:22',
                 'updated_at' => '2019-12-10 10:50:22',
+                'deleted_at' => NULL,
             ),
             2 => 
             array (
@@ -58,6 +60,22 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => NULL,
                 'created_at' => '2019-12-11 11:11:11',
                 'updated_at' => '2019-12-11 11:11:11',
+                'deleted_at' => NULL,
+            ),
+            3 => 
+            array (
+                'id' => 4,
+                'name' => 'Super Admin',
+                'role' => 'super_admin',
+                'gender' => 'Male',
+                'contact_number' => '09175602600',
+                'email' => 'superadmin@mail.com',
+                'email_verified_at' => NULL,
+                'password' => '$2y$10$no8paoJ4W6RzntcUEfkFPesXBpW6ed8rgvkWblKLm42rW15l31j7S',
+                'remember_token' => NULL,
+                'created_at' => '2020-01-04 06:30:40',
+                'updated_at' => '2020-01-04 06:30:40',
+                'deleted_at' => NULL,
             ),
         ));
         

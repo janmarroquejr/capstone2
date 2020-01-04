@@ -3,7 +3,166 @@
 
 @section('content')
 
+<a href="#" id="scroll" style="display: none;"><span></span></a>
 <div class="container">
+
+	<nav class="navbar position-sticky">
+		<ul>
+			<li><a href="#starters">Starters</a></li>
+			<li><a href="#entrees">Entrees</a></li>
+			<li><a href="#sides">Sides</a></li>
+			<li><a href="#desserts">Desserts</a></li>
+			<li><a href="#drinks">Drinks</a></li>
+		</ul>
+	</nav>
+	<hr>
+	
+	
+	<section id="starters">
+		<h1 class="text-center">starters</h1>
+		
+		<div class="row starters">
+			@foreach($starters as $item)
+			<div class="col-md-6 col-sm-12">
+				<div class="menu-item">
+					
+					<div class="img float-left">
+						<img src="{{asset($item->image_path)}}" alt="">
+					</div>
+					
+					<div class="item-body">
+						<div class="desc">
+							<p>{{$item->description}}</p>
+						</div>
+						<div class="price">
+							<p>&#8369;{{number_format($item->price)}}</p>
+						</div>
+					</div>
+	
+				</div>
+			</div>
+			@endforeach
+		</div>
+		<hr>
+	</section>
+
+	<section id="#entrees">
+		<h1 class="text-center">Entrees</h1>
+	
+		<div class="row entrees">
+			@foreach($entrees as $item)
+			<div class="col-md-6 col-sm-12">
+				<div class="menu-item">
+					
+					<div class="img float-left">
+						<img src="{{asset($item->image_path)}}" alt="">
+					</div>
+					
+					<div class="item-body">
+						<div class="desc">
+							<p>{{$item->description}}</p>
+						</div>
+						<div class="price">
+							<p>&#8369;{{number_format($item->price)}}</p>
+						</div>
+					</div>
+	
+				</div>
+			</div>
+			@endforeach
+		</div>
+		<hr>
+	</section>
+
+	<section id="sides">
+		<h1 class="text-center">Sides</h1>
+	
+		<div class="row sides">
+			@foreach($sides as $item)
+			<div class="col-md-6 col-sm-12">
+				<div class="menu-item">
+					
+					<div class="img float-left">
+						<img src="{{asset($item->image_path)}}" alt="">
+					</div>
+					
+					<div class="item-body">
+						<div class="desc">
+							<p>{{$item->description}}</p>
+						</div>
+						<div class="price">
+							<p>&#8369;{{number_format($item->price)}}</p>
+						</div>
+					</div>
+	
+				</div>
+			</div>
+			@endforeach
+		</div>
+		<hr>
+	</section>
+
+	<section id="desserts">
+		<h1 class="text-center">Desserts</h1>
+	
+		<div class="row desserts">
+			@foreach($desserts as $item)
+			<div class="col-md-6 col-sm-12">
+				<div class="menu-item">
+					
+					<div class="img float-left">
+						<img src="{{asset($item->image_path)}}" alt="">
+					</div>
+					
+					<div class="item-body">
+						<div class="desc">
+							<p>{{$item->description}}</p>
+						</div>
+						<div class="price">
+							<p>&#8369;{{number_format($item->price)}}</p>
+						</div>
+					</div>
+	
+				</div>
+			</div>
+			@endforeach
+		</div>
+		<hr>
+	</section>
+
+	<section id="drinks">
+		<h1 class="text-center">Drinks</h1>
+	
+		<div class="row drinks">
+			@foreach($drinks as $item)
+			<div class="col-md-6 col-sm-12">
+				<div class="menu-item">
+					
+					<div class="img float-left">
+						<img src="{{asset($item->image_path)}}" alt="">
+					</div>
+					
+					<div class="item-body">
+						<div class="desc">
+							<p>{{$item->description}}</p>
+						</div>
+						<div class="price">
+							<p>&#8369;{{number_format($item->price)}}</p>
+						</div>
+					</div>
+	
+				</div>
+			</div>
+			@endforeach
+		</div>
+		<hr>
+	</section>
+
+
+</div>
+
+
+{{-- <div class="container old">
 	<div id="alert-success" style="display: none;"class="text-center alert alert-success alert-dismissible fade show" role="alert">
 		<span>Added to reservation!</span>
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -19,7 +178,7 @@
 	</div>
 
 	<a href="#" id="scroll" style="display: none;"><span></span></a>
-	{{-- {{collect(session('order'))->sum()}} --}}
+	
 	<div class="row justify-content-center">
 		<div id="cat_buttons">
 			<a href="/menu" class="btn btn-outline-dark">All</a>
@@ -37,10 +196,7 @@
 			<div class="card">
 				<div class="header">
 					<img src="{{asset($item->image_path)}}">
-				{{-- <div class="icon">
-					<a href="#"><i class="fa fa-heart-o"></i></a>
-				</div> --}}
-			</div>
+				</div>
 			<div class="text d-flex flex-column mt-auto">
 				<h3 class="food">
 					{{$item->name}}
@@ -57,8 +213,8 @@
 		</div>
 	</div>
 	@endforeach
-</div>
-</div>
+</div>  --}}
+
 @endsection
 
 

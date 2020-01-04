@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::post('/preorder/{id}', 'MenuItemController@preOrder');
 
-	Route::get('/preorder/{id}/reserve', 'MenuItemController@displayPreOrders');
+	Route::post('/preorder/{id}/reserve', 'MenuItemController@displayPreOrders');
 
 	Route::get('/add', 'MenuItemController@storePreOrder');
 
@@ -64,7 +64,7 @@ Route::middleware(['admin'], ['super_admin'])->group(function(){
 
 	Route::patch('/updatestatus/{id}', 'BookingController@changeStatus');
 
-	Route::get('/cancelbooking/{id}', 'BookingController@destroy');
+	Route::get('/cancelbooking/{id}', 'BookingController@complete');
 });
 
 Route::middleware(['super_admin'])->group(function(){
@@ -91,7 +91,7 @@ Route::middleware(['super_admin'])->group(function(){
 
 	Route::patch('/updatestatus/{id}', 'BookingController@changeStatus');
 
-	Route::get('/cancelbooking/{id}', 'BookingController@destroy');
+	Route::get('/cancelbooking/{id}', 'BookingController@complete');
 	
 	Route::get('/deactivated', 'UserController@deactivated');
 	

@@ -69,9 +69,14 @@ class MenuItemController extends Controller
      */
     public function show(MenuItem $menuItem)
     {
-        $menu_items = MenuItem::all();
+        // $menu_items = MenuItem::all();
+        $starters = MenuItem::select('name', 'description', 'price', 'image_path')->where('category_id', '=', 1)->get();
+        $entrees = MenuItem::select('name', 'description', 'price', 'image_path')->where('category_id', '=', 2)->get();
+        $sides = MenuItem::select('name', 'description', 'price', 'image_path')->where('category_id', '=', 3)->get();
+        $desserts = MenuItem::select('name', 'description', 'price', 'image_path')->where('category_id', '=', 4)->get();
+        $drinks = MenuItem::select('name', 'description', 'price', 'image_path')->where('category_id', '=', 5)->get();
         $categories = Category::all();
-        return view('menu.menu', compact('menu_items', 'categories'));
+        return view('menu.menu', compact('starters', 'entrees', 'sides', 'desserts', 'drinks', 'categories'));
     }
 
     /**
