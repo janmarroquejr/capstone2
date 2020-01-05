@@ -53,20 +53,21 @@ class BookingController extends Controller
         $booking->start_date = $request->start_date;
         $booking->start_time = $request->start_time;
         $booking->comments = $request->comments;
+        $checker = "false";
 
         //dd(count($user_id));
         
         if(count($user_id) == 0){
             $booking->save();
-            session()->flash('reserved', 'Reservation Successful!'); 
-            
-            return back();
+            // session()->flash('reserved', 'Reservation Successful!'); 
+            $checker = "true";
+            return view('booking.preorders', compact('checker'));
         }
             
         else{
-            session()->flash('denied', 'You already have an active reservation!');
-            
-            return back();  
+            // session()->flash('denied', 'You already have an active reservation!');
+            $checker = "false";
+            return view('booking.preorders', compact('checker'));
         }
         
         // dd($booking);
@@ -120,14 +121,43 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Booking $id)
     {
-        
+        $id->delete();
+        return back();
+    }
+
+    public function pending(){
+        $bookings = Booking::where('status', '=', 0)->get();
+        return view('booking.adminbooking', compact('bookings'));
+    }
+
+    public function completed(){
+        $bookings = Booking::where('status', '=', 1)->get();
+        return view('booking.adminbooking', compact('bookings'));
+    }
+
+    public function archived(){
+        $bookings = Booking::onlyTrashed()->get();
+        return view('booking.adminbooking', compact('bookings'));
     }
 
     public function complete($id){
         $booking = Booking::find($id);
         $booking->status = 1;
+        $booking->save();
+        return redirect('/viewbookings');
+    }
+
+    public function restore($id){
+        $booking = Booking::withTrashed()->find($id);
+        $booking->restore();
+        return back();
+    }
+
+    public function return($id){
+        $booking = Booking::find($id);
+        $booking->status = 0;
         $booking->save();
         return redirect('/viewbookings');
     }

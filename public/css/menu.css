@@ -43,7 +43,7 @@
 
 .menu-item {
     display: flex;
-    height: 8rem;
+    height: 10rem;
     width: 50vh;
     border: 2px solid darkred;
     margin: 2rem 0;

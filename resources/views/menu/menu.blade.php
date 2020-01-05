@@ -46,7 +46,7 @@
 		<hr>
 	</section>
 
-	<section id="#entrees">
+	<section id="entrees">
 		<h1 class="text-center">Entrees</h1>
 	
 		<div class="row entrees">

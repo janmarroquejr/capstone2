@@ -5,14 +5,14 @@
 <div class="container">
 	<div class="row justify-content-center">
 		
-		@if(session()->has('success'))
-		<div class="alert alert-success alert-dismissable" role="alert">
-			{{session()->get('success')}}
+		
+		<div id="alert-success" style="display:none" class="alert alert-success alert-dismissable" role="alert">
+			Item added successfully!
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aira-hidden="true">&times;</span>
 			</button>
 		</div>
-		@endif
+		
 
 		@if(session()->has('delete'))
 		<div class="alert alert-danger alert-dismissable" role="alert">
@@ -37,11 +37,7 @@
 				<!-- Modal content-->
 				<form action="" id="deleteForm" method="post">
 					<div class="modal-content">
-{{-- 						<div class="bg-danger">
-							<button type="button" class="close float-right" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title text-center">DELETE CONFIRMATION</h4>
-						</div>
- --}}						<div class="modal-body">
+						<div class="modal-body">
 							{{ csrf_field() }}
 							{{ method_field('DELETE') }}
 							<p class="text-center">Are you sure you want to delete this item?</p>
@@ -61,30 +57,31 @@
 	<div class="row">
 		<div class="col-md-3">
 			<h1>Add Menu Item</h1>
-			<form action="/addtomenu" method="POST" enctype="multipart/form-data">
+			<form action="/addtomenu" method="POST" id="myForm" enctype="multipart/form-data">
 				@csrf
 
 				<label for="name">Name</label>
-				<input type="text" name="name" class="form-control">
+				<input type="text" name="name" id="name" class="form-control">
 				<label for="price">Price</label>
-				<input type="text" name="price" class="form-control">
+				<input type="text" name="price" id="price" class="form-control">
 				<label for="description">Description</label>
-				<textarea type="text" name="description" class="form-control"></textarea>
+				<textarea type="text" name="description" id="description" class="form-control"></textarea>
 				<label for="image">Image</label>
-				<input type="file" name="image" class="form-control">
+				<input type="file" name="image" class="form-control" id="image">
 				<label for="categories">Category</label>
-				<select name="category" class="form-control">
+				<select name="category" class="form-control" id="category">
 					@foreach($categories as $category)
 					<option value="{{$category->id}}">{{$category->name}}</option>
 					@endforeach
 				</select>
-				<button type="submit" class="btn btn-primary form-control mt-2">Submit</button>
+				<button type="submit" id="submit" class="btn btn-primary form-control mt-2">Submit</button>
 
 			</form>
+			<a href="/archiveditems">View Archived Menu Items</a>
 		</div>
 
 		<div class="col-md-9 overflow-auto">
-			<table class="table table-bordered table-striped">
+			<table class="table table-bordered table-striped" id="table">
 				<tr>
 					<th>#</th>
 					<th>Image</th>
@@ -106,21 +103,20 @@
 						<td>
 							<form action="/edit/{{$item->id}}/edit" method="POST">
 								@csrf
-								<button>Update</button>
+								<button>Edit</button>
 							</form>
 							<a href="javascript:;" data-toggle="modal" onclick="deleteData({{$item->id}})" 
 								data-target="#DeleteModal" class="text-danger">Delete</a>
-								{{-- <a href="#" data-href="/deleteitem/{{$item->id}}" data-toggle="modal" data-target="#confirm-delete" class="text-danger">Delete</a> --}}
-							</td>
-						</tr>
-						@empty
-						<tr>
-							<td colspan="7" class="text-center">Nothing to show</td>
-						</tr>
+						</td>
+					</tr>
+					@empty
+					<tr>
+						<td colspan="7" class="text-center">Nothing to show</td>
+					</tr>
 
 
 
-						@endforelse
+					@endforelse
 
 					</tbody>
 
@@ -128,33 +124,100 @@
 			</div>
 		</div>
 	</div>
-
-@section('jquery')
 	<script
 	src="https://code.jquery.com/jquery-3.4.1.min.js"
 	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 	crossorigin="anonymous">
 </script>
+	<script>
+		// document.addEventListener('DOMContentLoaded', function(event){
+		// let submit = document.querySelector('#submit');
+		
+		// 	submit.addEventListener('click', function(e){
+		// 		e.preventDefault();
+		// 		let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+		// 		document.getElementById('myForm').reset();
+		// 		let name = document.getElementById('name');
+		// 		let price = document.getElementById('price');
+		// 		let description = document.getElementById('description');
+		// 		let category = document.getElementById('category');
+		// 		let image = document.querySelector('input[type=file]');
+
+		// 		let nameValue = name.value;
+		// 		let priceValue = price.value;
+		// 		let descriptionValue = description.value;
+		// 		let categoryValue = category.value;
+		// 		let imageValue = image.files[0];
+				
+		// 		let categoryInner = document.getElementById('category').innerHTML;
+				
+		// 		let url = '/addtomenu';
+		// 		let data = new FormData;
+				
+				
+				
+		// 		data.append('_token', token);
+		// 		data.append('name', nameValue);
+		// 		data.append('price', priceValue);
+		// 		data.append('description', descriptionValue);
+		// 		data.append('category', categoryValue);
+		// 		data.append('image_path', imageValue);
+
+		// 		fetch(url, {
+		// 			method: 'POST',
+		// 			body: data
+		// 		}).then(function(res){
+		// 			return res.text();
+		// 		}).then(function(data){
+		// 			let alertSuccess = document.getElementById('alert-success');
+		// 			alertSuccess.style.display = "block";
+					
+		// 			let table = document.getElementsByTagName('table')[0];
+		// 			let newRow = table.insertRow(table.rows.length);
+					
+		// 			let newCell1 = newRow.insertCell(0);
+		// 			let newCell2 = newRow.insertCell(1);
+		// 			let newCell3 = newRow.insertCell(2);
+		// 			let newCell4 = newRow.insertCell(3);
+		// 			let newCell5 = newRow.insertCell(4);
+		// 			let newCell6 = newRow.insertCell(5);
+		// 			let newCell7 = newRow.insertCell(6);
+					
+		// 			newCell1.innerHTML = "";
+		// 			newCell2.innerHTML = imageValue;
+		// 			newCell3.innerHTML = nameValue;
+		// 			newCell4.innerHTML = priceValue;
+		// 			newCell5.innerHTML = descriptionValue;
+		// 			newCell6.innerHTML = categoryValue;
+		// 			newCell7.innerHTML = "<button>Edit</button><br><a href='#' class='text-danger'>Delete</a>"
+
+		// 		})
+		// 	})
+		// })
+					
+	</script>
+	
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.alert').delay(5000).fadeOut(300);
+		});
+	
+		 function deleteData(id)
+		 {
+			 var id = id;
+			 var url = "/deleteitem/"+":id";
+			 url = url.replace(':id', id);
+			 $("#deleteForm").attr('action', url);
+		 }
+	
+		 function formSubmit()
+		 {
+			 $("#deleteForm").submit();
+		 }
+	
+	</script>
+
 @endsection
 
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('.alert').delay(5000).fadeOut(300);
-	});
-
-     function deleteData(id)
-     {
-         var id = id;
-         var url = "/deleteitem/"+":id";
-         url = url.replace(':id', id);
-         $("#deleteForm").attr('action', url);
-     }
-
-     function formSubmit()
-     {
-         $("#deleteForm").submit();
-     }
-
-</script>
-@endsection

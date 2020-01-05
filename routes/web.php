@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::post('/preorder/{id}', 'MenuItemController@preOrder');
 
-	Route::post('/preorder/{id}/reserve', 'MenuItemController@displayPreOrders');
+	Route::get('/preorder/{id}/reserve', 'MenuItemController@displayPreOrders');
 
 	Route::get('/add', 'MenuItemController@storePreOrder');
 
@@ -64,7 +64,20 @@ Route::middleware(['admin'], ['super_admin'])->group(function(){
 
 	Route::patch('/updatestatus/{id}', 'BookingController@changeStatus');
 
-	Route::get('/cancelbooking/{id}', 'BookingController@complete');
+	Route::get('/completebooking/{id}', 'BookingController@complete');
+	
+	Route::get('/returnbooking/{id}', 'BookingController@return');
+
+	Route::post('/archivebooking/{id}', 'BookingController@destroy');
+
+	Route::get('/viewpending', 'BookingController@pending');
+	Route::get('/viewcompleted', 'BookingController@completed');
+	Route::get('/viewarchived', 'BookingController@archived');
+	Route::post('/restorebooking/{id}', 'BookingController@restore');
+
+	Route::get('/archiveditems', 'MenuItemController@archive');
+	Route::post('/restoreitem/{id}', 'MenuItemController@restore');
+	
 });
 
 Route::middleware(['super_admin'])->group(function(){
@@ -91,9 +104,21 @@ Route::middleware(['super_admin'])->group(function(){
 
 	Route::patch('/updatestatus/{id}', 'BookingController@changeStatus');
 
-	Route::get('/cancelbooking/{id}', 'BookingController@complete');
+	Route::get('/completebooking/{id}', 'BookingController@complete');
 	
 	Route::get('/deactivated', 'UserController@deactivated');
+
+	Route::get('/returnbooking/{id}', 'BookingController@return');
+
+	Route::post('/archivebooking/{id}', 'BookingController@destroy');
+
+	Route::get('/viewpending', 'BookingController@pending');
+	Route::get('/viewcompleted', 'BookingController@completed');
+	Route::get('/viewarchived', 'BookingController@archived');
+	Route::post('/restorebooking/{id}', 'BookingController@restore');
+
+	Route::get('/archiveditems', 'MenuItemController@archive');
+	Route::post('/restoreitem/{id}', 'MenuItemController@restore');
 	
 });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\MenuItem;
 use \App\Category;
 use \App\FoodOrder;
+use \App\Booking;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -50,6 +51,7 @@ class MenuItemController extends Controller
     {
         $image = $request->file('image');
         $image->move('images/', $image->getClientOriginalName());
+    
         $item = new MenuItem;
         $item->name = $request->name;
         $item->price = $request->price;
@@ -57,8 +59,7 @@ class MenuItemController extends Controller
         $item->image_path = "images/".$image->getClientOriginalName();
         $item->category_id = $request->category;
         $item->save();
-        session()->flash('success', 'Menu Item Added Successfully!');
-        return redirect('/addmenuitems');
+        return back();
     }
 
     /**
@@ -151,25 +152,15 @@ class MenuItemController extends Controller
     }
 
     public function displayPreOrders($id){
-        $order = session('order');
-        $menu_items = collect();
-        $total = 0;
         $user = \App\User::find(Auth::user()->id = $id);
-        $food_id = \App\FoodOrder::select('id')->where('user_id', Auth::user()->id = $id);
-        // $food_id = null;
-        // dd($food_id);
-        if(session('order') == !null){
-            foreach($order as $itemId => $quantity){
-                $menu_item = MenuItem::find($itemId);
-                $menu_item->quantity = $quantity;
-                $total += $menu_item->price * $menu_item->quantity;
-                $menu_items->push($menu_item);
-            }
+        $booking = Booking::where([['user_id', '=', $id], ['status', '=', 0]])->get();
+        if(count($booking) == 0){
+            $checker = "false";
         }
         else{
-            return view("booking.preorders", compact("menu_items", 'total', 'user', 'food_id'));
+            $checker = "true";
         }
-        return view("booking.preorders", compact("menu_items", 'total', 'user', 'food_id'));
+        return view("booking.preorders", compact('user', 'checker'));
     }
 
     public function storePreOrder() {
@@ -208,6 +199,12 @@ class MenuItemController extends Controller
 
     public function archive() {
         $menu_items = MenuItem::onlyTrashed()->get();
-        return view('', compact('menu_items'));
+        return view('menu.menuarchive', compact('menu_items'));
+    }
+
+    public function restore($id) {
+        $item = MenuItem::withTrashed()->find($id);
+        $item->restore();
+        return back();
     }
 }

@@ -66,7 +66,7 @@
 				<button class="btn btn-outline-dark mt-2 form-control" data-id="{{Auth::user()->id}}" id="submit">Submit</button>
 				{{-- <a class="btn btn-outline-dark mt-2" href="/menu">Pre-order your food</a> --}}
 			</form>
-
+			
 		</div>
 	</div>
 </div>
@@ -118,10 +118,11 @@
 					body: data
 				}).then(function(res){
 					return res.text();
-				}).then(function(data){
-					console.log('{{session()->has('reserved')}}')
 					
-					if('{{session()->has('denied')}}' == 1){
+				}).then(function(data){
+					console.log('{{$checker}}')
+					
+					if('{{$checker}}' == "true"){
 						let alertDenied = document.querySelector('.alert-danger');
 						alertDenied.style.display = "block";
 						
