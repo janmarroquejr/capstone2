@@ -49,7 +49,7 @@ class MenuItemController extends Controller
      */
     public function store(Request $request)
     {
-        $image = $request->file('image');
+        $image = $request->file('image_path');
         $image->move('images/', $image->getClientOriginalName());
     
         $item = new MenuItem;

@@ -57,7 +57,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<h1>Add Menu Item</h1>
-			<form action="/addtomenu" method="POST" id="myForm" enctype="multipart/form-data">
+			<form action="" method="POST" id="myForm" enctype="multipart/form-data">
 				@csrf
 
 				<label for="name">Name</label>
@@ -74,7 +74,7 @@
 					<option value="{{$category->id}}">{{$category->name}}</option>
 					@endforeach
 				</select>
-				<button type="submit" id="submit" class="btn btn-primary form-control mt-2">Submit</button>
+			<button type="submit" id="submit" class="btn btn-primary form-control mt-2">Submit</button>
 
 			</form>
 			<a href="/archiveditems">View Archived Menu Items</a>
@@ -130,70 +130,70 @@
 	crossorigin="anonymous">
 </script>
 	<script>
-		// document.addEventListener('DOMContentLoaded', function(event){
-		// let submit = document.querySelector('#submit');
+		document.addEventListener('DOMContentLoaded', function(event){
+		let submit = document.querySelector('#submit');
 		
-		// 	submit.addEventListener('click', function(e){
-		// 		e.preventDefault();
-		// 		let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-		// 		document.getElementById('myForm').reset();
-		// 		let name = document.getElementById('name');
-		// 		let price = document.getElementById('price');
-		// 		let description = document.getElementById('description');
-		// 		let category = document.getElementById('category');
-		// 		let image = document.querySelector('input[type=file]');
+			submit.addEventListener('click', function(e){
+				e.preventDefault();
+				
+				let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+				let name = document.getElementById('name');
+				let price = document.getElementById('price');
+				let description = document.getElementById('description');
+				let category = document.getElementById('category');
+				let image = document.querySelector('input[type=file]');
 
-		// 		let nameValue = name.value;
-		// 		let priceValue = price.value;
-		// 		let descriptionValue = description.value;
-		// 		let categoryValue = category.value;
-		// 		let imageValue = image.files[0];
+				let nameValue = name.value;
+				let priceValue = price.value;
+				let descriptionValue = description.value;
+				let categoryValue = category.value;
+				let imageValue = image.files[0];
 				
-		// 		let categoryInner = document.getElementById('category').innerHTML;
+				let categoryInner = document.getElementById('category').innerHTML;
 				
-		// 		let url = '/addtomenu';
-		// 		let data = new FormData;
+				let url = '/addtomenu/';
+				let data = new FormData;
 				
 				
 				
-		// 		data.append('_token', token);
-		// 		data.append('name', nameValue);
-		// 		data.append('price', priceValue);
-		// 		data.append('description', descriptionValue);
-		// 		data.append('category', categoryValue);
-		// 		data.append('image_path', imageValue);
+				data.append('_token', token);
+				data.append('name', nameValue);
+				data.append('price', priceValue);
+				data.append('description', descriptionValue);
+				data.append('category', categoryValue);
+				data.append('image_path', imageValue);
 
-		// 		fetch(url, {
-		// 			method: 'POST',
-		// 			body: data
-		// 		}).then(function(res){
-		// 			return res.text();
-		// 		}).then(function(data){
-		// 			let alertSuccess = document.getElementById('alert-success');
-		// 			alertSuccess.style.display = "block";
+				fetch(url, {
+					method: 'POST',
+					body: data
+				}).then(function(res){
+					return res.text();
+				}).then(function(data){
+					let alertSuccess = document.getElementById('alert-success');
+					alertSuccess.style.display = "block";
 					
-		// 			let table = document.getElementsByTagName('table')[0];
-		// 			let newRow = table.insertRow(table.rows.length);
+					let table = document.getElementsByTagName('table')[0];
+					let newRow = table.insertRow(table.rows.length);
 					
-		// 			let newCell1 = newRow.insertCell(0);
-		// 			let newCell2 = newRow.insertCell(1);
-		// 			let newCell3 = newRow.insertCell(2);
-		// 			let newCell4 = newRow.insertCell(3);
-		// 			let newCell5 = newRow.insertCell(4);
-		// 			let newCell6 = newRow.insertCell(5);
-		// 			let newCell7 = newRow.insertCell(6);
+					let newCell1 = newRow.insertCell(0);
+					let newCell2 = newRow.insertCell(1);
+					let newCell3 = newRow.insertCell(2);
+					let newCell4 = newRow.insertCell(3);
+					let newCell5 = newRow.insertCell(4);
+					let newCell6 = newRow.insertCell(5);
+					let newCell7 = newRow.insertCell(6);
 					
-		// 			newCell1.innerHTML = "";
-		// 			newCell2.innerHTML = imageValue;
-		// 			newCell3.innerHTML = nameValue;
-		// 			newCell4.innerHTML = priceValue;
-		// 			newCell5.innerHTML = descriptionValue;
-		// 			newCell6.innerHTML = categoryValue;
-		// 			newCell7.innerHTML = "<button>Edit</button><br><a href='#' class='text-danger'>Delete</a>"
-
-		// 		})
-		// 	})
-		// })
+					newCell1.innerHTML = "";
+					newCell2.innerHTML = imageValue;
+					newCell3.innerHTML = nameValue;
+					newCell4.innerHTML = priceValue;
+					newCell5.innerHTML = descriptionValue;
+					newCell6.innerHTML = categoryValue;
+					newCell7.innerHTML = "<button>Edit</button><br><a href='#' class='text-danger'>Delete</a>"
+					document.getElementById('myForm').reset();
+				})
+			})
+		})
 					
 	</script>
 	
