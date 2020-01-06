@@ -54,7 +54,7 @@ Route::middleware(['admin'], ['super_admin'])->group(function(){
 
 	Route::delete('/deleteitem/{menuItem}', 'MenuItemController@destroy');
 
-	Route::post('/edit/{menuItem}/edit', 'MenuItemController@edit');
+	Route::get('/edit/{menuItem}/edit', 'MenuItemController@edit');
 
 	Route::patch('/update/{menuItem}', 'MenuItemController@update');
 
@@ -94,7 +94,7 @@ Route::middleware(['super_admin'])->group(function(){
 
 	Route::delete('/deleteitem/{menuItem}', 'MenuItemController@destroy');
 
-	Route::post('/edit/{menuItem}/edit', 'MenuItemController@edit');
+	Route::get('/edit/{menuItem}/edit', 'MenuItemController@edit');
 
 	Route::patch('/update/{menuItem}', 'MenuItemController@update');
 

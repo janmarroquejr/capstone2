@@ -51,15 +51,16 @@ class MenuItemController extends Controller
     {
         $image = $request->file('image_path');
         $image->move('images/', $image->getClientOriginalName());
-    
+        
         $item = new MenuItem;
         $item->name = $request->name;
         $item->price = $request->price;
         $item->description = $request->description;
         $item->image_path = "images/".$image->getClientOriginalName();
         $item->category_id = $request->category;
+        $id = $item->id;
         $item->save();
-        return back();
+        return view('menu.addMenuItems', compact('id'));
     }
 
     /**

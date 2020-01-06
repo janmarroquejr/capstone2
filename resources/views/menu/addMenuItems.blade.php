@@ -74,7 +74,8 @@
 					<option value="{{$category->id}}">{{$category->name}}</option>
 					@endforeach
 				</select>
-			<button type="submit" id="submit" class="btn btn-primary form-control mt-2">Submit</button>
+				<input type="hidden" name="id" value="">
+				<button type="submit" id="submit" class="btn btn-primary form-control mt-2">Submit</button>
 
 			</form>
 			<a href="/archiveditems">View Archived Menu Items</a>
@@ -101,12 +102,12 @@
 						<td>{{$item->description}}</td>
 						<td>{{$item->category->name}}</td>
 						<td>
-							<form action="/edit/{{$item->id}}/edit" method="POST">
+							{{-- <form action="/edit/{{$item->id}}/edit" method="POST">
 								@csrf
 								<button>Edit</button>
-							</form>
-							<a href="javascript:;" data-toggle="modal" onclick="deleteData({{$item->id}})" 
-								data-target="#DeleteModal" class="text-danger">Delete</a>
+							</form> --}}
+							<a href="/edit/{{$item->id}}/edit" class="btn btn-success">Edit</a>
+							<a href="javascript:;" data-toggle="modal" onclick="deleteData({{$item->id}})" data-target="#DeleteModal" class="text-danger">Delete</a>
 						</td>
 					</tr>
 					@empty
@@ -118,105 +119,123 @@
 
 					@endforelse
 
-					</tbody>
+				</tbody>
 
-				</table>
-			</div>
+			</table>
 		</div>
 	</div>
-	<script
-	src="https://code.jquery.com/jquery-3.4.1.min.js"
-	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-	crossorigin="anonymous">
+</div>
+<script
+src="https://code.jquery.com/jquery-3.4.1.min.js"
+integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+crossorigin="anonymous">
 </script>
-	<script>
-		document.addEventListener('DOMContentLoaded', function(event){
+<script>
+	document.addEventListener('DOMContentLoaded', function(event){
 		let submit = document.querySelector('#submit');
 		
-			submit.addEventListener('click', function(e){
-				e.preventDefault();
-				
-				let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-				let name = document.getElementById('name');
-				let price = document.getElementById('price');
-				let description = document.getElementById('description');
-				let category = document.getElementById('category');
-				let image = document.querySelector('input[type=file]');
+		submit.addEventListener('click', function(e){
+			e.preventDefault();
 
-				let nameValue = name.value;
-				let priceValue = price.value;
-				let descriptionValue = description.value;
-				let categoryValue = category.value;
-				let imageValue = image.files[0];
-				
-				let categoryInner = document.getElementById('category').innerHTML;
-				
-				let url = '/addtomenu/';
-				let data = new FormData;
-				
-				
-				
-				data.append('_token', token);
-				data.append('name', nameValue);
-				data.append('price', priceValue);
-				data.append('description', descriptionValue);
-				data.append('category', categoryValue);
-				data.append('image_path', imageValue);
+			let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+			let name = document.getElementById('name');
+			let price = document.getElementById('price');
+			let description = document.getElementById('description');
+			let category = document.getElementById('category');
+			let image = document.querySelector('input[type=file]');
+			let imageSrc = image.src;
 
-				fetch(url, {
-					method: 'POST',
-					body: data
-				}).then(function(res){
-					return res.text();
-				}).then(function(data){
-					let alertSuccess = document.getElementById('alert-success');
-					alertSuccess.style.display = "block";
-					
-					let table = document.getElementsByTagName('table')[0];
-					let newRow = table.insertRow(table.rows.length);
-					
-					let newCell1 = newRow.insertCell(0);
-					let newCell2 = newRow.insertCell(1);
-					let newCell3 = newRow.insertCell(2);
-					let newCell4 = newRow.insertCell(3);
-					let newCell5 = newRow.insertCell(4);
-					let newCell6 = newRow.insertCell(5);
-					let newCell7 = newRow.insertCell(6);
-					
-					newCell1.innerHTML = "";
-					newCell2.innerHTML = imageValue;
-					newCell3.innerHTML = nameValue;
-					newCell4.innerHTML = priceValue;
-					newCell5.innerHTML = descriptionValue;
-					newCell6.innerHTML = categoryValue;
-					newCell7.innerHTML = "";
-					document.getElementById('myForm').reset();
-				})
+			let nameValue = name.value;
+			let priceValue = price.value;
+			let descriptionValue = description.value;
+			let categoryValue = category.value;
+			let imageValue = image.files[0];
+			let imageURL = URL.createObjectURL(imageValue);
+
+			let categoryInner = document.getElementById('category').innerHTML;
+
+			let url = '/addtomenu/';
+			let data = new FormData;
+
+
+
+			data.append('_token', token);
+			data.append('name', nameValue);
+			data.append('price', priceValue);
+			data.append('description', descriptionValue);
+			data.append('category', categoryValue);
+			data.append('image_path', imageValue);
+
+			fetch(url, {
+				method: 'POST',
+				body: data
+			}).then(function(res){
+				return res.text();
+			}).then(function(data){
+
+				let alertSuccess = document.getElementById('alert-success');
+				alertSuccess.style.display = "block";
+
+				let table = document.getElementsByTagName('table')[0];
+				let newRow = table.insertRow(table.rows.length);
+
+				let newCell1 = newRow.insertCell(0);
+				let newCell2 = newRow.insertCell(1);
+				let newCell3 = newRow.insertCell(2);
+				let newCell4 = newRow.insertCell(3);
+				let newCell5 = newRow.insertCell(4);
+				let newCell6 = newRow.insertCell(5);
+				let newCell7 = newRow.insertCell(6);
+
+				newCell1.innerHTML = "{{++$index}}";
+				newCell2.innerHTML = "<img style='height: 100px; width:150px; object-fit: cover;' src='"+imageURL+"'>"
+				newCell3.innerHTML = nameValue;
+				newCell4.innerHTML = priceValue;
+				newCell5.innerHTML = descriptionValue;
+
+				if(categoryValue == 1){
+					newCell6.innerHTML = "Starters";
+				}
+				else if(categoryValue == 2){
+					newCell6.innerHTML = "Entrees";
+				}
+				else if(categoryValue == 3){
+					newCell6.innerHTML = "Sides";
+				}
+				else if(categoryValue == 4){
+					newCell6.innerHTML = "Desserts";
+				}
+				else{
+					newCell6.innerHTML = "Drinks";
+				}
+
+				newCell7.innerHTML = "<a href='/edit/{{$item->id++}}/edit' class='btn btn-success'>Edit</a><a href='javascript:;'' data-toggle='modal' onclick='deleteData({{$item->id++}})' data-target='#DeleteModal' class='text-danger'>Delete</a>"
 			})
 		})
-					
-	</script>
+	})
+
+</script>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.alert').delay(5000).fadeOut(300);
+	});
 	
+	function deleteData(id)
+	{
+		var id = id;
+		var url = "/deleteitem/"+":id";
+		url = url.replace(':id', id);
+		$("#deleteForm").attr('action', url);
+	}
 	
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('.alert').delay(5000).fadeOut(300);
-		});
+	function formSubmit()
+	{
+		$("#deleteForm").submit();
+	}
 	
-		 function deleteData(id)
-		 {
-			 var id = id;
-			 var url = "/deleteitem/"+":id";
-			 url = url.replace(':id', id);
-			 $("#deleteForm").attr('action', url);
-		 }
-	
-		 function formSubmit()
-		 {
-			 $("#deleteForm").submit();
-		 }
-	
-	</script>
+</script>
 
 @endsection
 
