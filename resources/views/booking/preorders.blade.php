@@ -130,7 +130,9 @@
 					else{
 						let alertSuccess = document.querySelector('.alert-success');
 						alertSuccess.style.display = "block";
+
 					}
+					document.getElementById('form').reset();
 				})
 			})
 		})

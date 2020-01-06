@@ -46,24 +46,31 @@
 				@if(Auth::user()->role == 'user')
 				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/menu">{{ __('Menu') }}</a>
 				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/preorder/{{Auth::user()->id}}/reserve">{{ __('Reserve') }}</a>
+				<a class="list-group-item list-group-item-action bg-secondary text-light" href="/editaccount/{{Auth::user()->id}}">
+						Edit Account Info
+				</a>
 				@endif
 				@if(Auth::user()->role == 'admin' || Auth::user()->role == 'super_admin')
 					<a class="list-group-item list-group-item-action bg-secondary text-light" href="/addmenuitems">{{ __('Add Menu Items') }}</a>
 					<a class="list-group-item list-group-item-action bg-secondary text-light" href="/viewbookings">{{ __('View Customer Reservations') }}</a>
+					<a class="list-group-item list-group-item-action bg-secondary text-light" href="/editaccount/{{Auth::user()->id}}">
+						Edit Account Info
+					</a>
 				@endif
 				@if(Auth::user()->role == 'super_admin')
 					<a class="list-group-item list-group-item-action bg-secondary text-light" href="/users">{{ __('User control') }}</a>
+					
 				@endif
 					<a id="navbarDropdown" class="list-group-item list-group-item-action bg-secondary text-light dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 						{{ Auth::user()->name }} <span class="caret"></span>
 					</a>
 
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-				<a class="dropdown-item" href="/editaccount/{{Auth::user()->id}}"
+				{{-- <a class="dropdown-item" href="/editaccount/{{Auth::user()->id}}"
 						onclick="event.preventDefault();
 						document.getElementById('edit-form').submit();">
 						Edit Account Info
-					</a>
+					</a> --}}
 
 					<a class="dropdown-item" href="{{ route('logout') }}"
 						onclick="event.preventDefault();
@@ -74,9 +81,10 @@
 					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 						@csrf
 					</form>
-					<form id="edit-form" action="/editaccount/{{Auth::user()->id}}" method="POST" style="display: none;">
+					{{-- <form id="edit-form" action="/editaccount/{{Auth::user()->id}}" method="POST" style="display: none;">
 						@csrf
-					</form>
+					</form> --}}
+					{{-- <a href="/editaccount/{{Auth::user()->id}}" id="edit-form" style="display:none;"></a> --}}
 				</div>
 				@endguest
 		</div>

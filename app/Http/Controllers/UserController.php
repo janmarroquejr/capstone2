@@ -75,6 +75,7 @@ class UserController extends Controller
         $user->gender = $request->gender;
         $user->contact_number = $request->contact_number;
         $user->email = $request->email;
+        session()->flash('edited', 'Your account updated successfully!');
         $user->save();
         return back();
     }

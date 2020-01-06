@@ -26,8 +26,6 @@ Route::get('/menu', 'MenuItemController@show');
 
 Route::middleware(['auth'])->group(function(){
 	
-	// Route::get('/booking/{id}', 'BookingController@show');
-	
 	Route::post('/booking/{id}', 'BookingController@store');
 
 	Route::get('/filter/{id}', 'MenuItemController@displayByCategory');
@@ -40,7 +38,7 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::get('/removeitem/{id}', 'BookingController@removeItem');
 
-	Route::post('/editaccount/{id}', 'UserController@update');
+	Route::get('/editaccount/{id}', 'UserController@update');
 
 	Route::patch('/edituser/{id}', 'UserController@edit');
 	
