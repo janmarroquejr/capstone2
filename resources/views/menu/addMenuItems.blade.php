@@ -189,7 +189,7 @@
 					newCell4.innerHTML = priceValue;
 					newCell5.innerHTML = descriptionValue;
 					newCell6.innerHTML = categoryValue;
-					newCell7.innerHTML = "<button>Edit</button><br><a href='#' class='text-danger'>Delete</a>"
+					newCell7.innerHTML = "";
 					document.getElementById('myForm').reset();
 				})
 			})
